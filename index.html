@@ -399,6 +399,22 @@
             padding-right: 120px;
         }
 
+        .code-block pre {
+            margin: 0;
+            padding: 0;
+            font-family: inherit;
+            font-size: inherit;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        .code-block pre code {
+            display: block;
+            font-family: inherit;
+            font-size: inherit;
+            color: inherit;
+        }
+
         .code-copy-btn {
             position: absolute;
             top: 12px;
@@ -634,26 +650,34 @@
             </div>
             <div class="sidebar-item" data-page="9">
                 <div class="sidebar-number">9</div>
-                <div class="sidebar-text">Implement Widgets</div>
+                <div class="sidebar-text">Implement Station Widget</div>
             </div>
             <div class="sidebar-item" data-page="10">
                 <div class="sidebar-number">10</div>
-                <div class="sidebar-text">Prepare for Testing</div>
+                <div class="sidebar-text">Implement User State Widget</div>
             </div>
             <div class="sidebar-item" data-page="11">
                 <div class="sidebar-number">11</div>
-                <div class="sidebar-text">Make Test Call</div>
+                <div class="sidebar-text">Implement Task List Widget</div>
             </div>
             <div class="sidebar-item" data-page="12">
                 <div class="sidebar-number">12</div>
-                <div class="sidebar-text">Verify Integration</div>
+                <div class="sidebar-text">Implement Call Control Widget</div>
             </div>
             <div class="sidebar-item" data-page="13">
                 <div class="sidebar-number">13</div>
-                <div class="sidebar-text">Troubleshooting</div>
+                <div class="sidebar-text">Prepare for Testing</div>
             </div>
             <div class="sidebar-item" data-page="14">
                 <div class="sidebar-number">14</div>
+                <div class="sidebar-text">Make Test Call</div>
+            </div>
+            <div class="sidebar-item" data-page="15">
+                <div class="sidebar-number">15</div>
+                <div class="sidebar-text">Congratulations!</div>
+            </div>
+            <div class="sidebar-item" data-page="16">
+                <div class="sidebar-number">16</div>
                 <div class="sidebar-text">Resources & Cleanup</div>
             </div>
         </div>
@@ -814,6 +838,7 @@
                 <h4>4. Verify the files are there:</h4>
                 <div class="code-block">ls<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
                 <p><strong>Expected output:</strong> You should see files and folders including <code>package.json</code>, <code>src</code>, <code>public</code>, etc.</p>
+                <img src="assets/image1.jpg" alt="Image 1" width="80%" height="80%" class="lab-image">
             </div>
 
             <!-- Page 5: Step 3 - Install Dependencies -->
@@ -840,7 +865,7 @@
                     <li>You return to the command prompt</li>
                     <li>No error messages appear in red</li>
                 </ul>
-
+                <img src="assets/image2.jpg" alt="Image 2" width="80%" height="80%" class="lab-image">
                 <div class="warning">
                     <strong>⚠️ If you see errors:</strong><br>
                     - Try running <code>npm install</code> again<br>
@@ -866,9 +891,7 @@
                 </ul>
 
                 <h4>3. Application is ready when you see:</h4>
-                <div class="code-block">webpack compiled successfully<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
-                <p>or</p>
-                <div class="code-block">Compiled successfully!<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
+                <img src="assets/image3.jpg" alt="Image 3" width="80%" height="80%" class="lab-image">
 
                 <h4>4. Your browser should automatically open:</h4>
                 <ul>
@@ -881,6 +904,7 @@
                     <li>A login widget or placeholder area</li>
                     <li><strong>This is your starting point!</strong></li>
                 </ul>
+                <img src="assets/image4.jpg" alt="Image 4" width="80%" height="80%" class="lab-image">
 
                 <div class="note">
                     <strong>Tip:</strong> Keep this terminal window open. The application needs to keep running. If you close it, the app will stop.
@@ -926,7 +950,7 @@
                         </ul>
                     </li>
                 </ol>
-
+                <img src="assets/image5.jpg" alt="Image 5"  class="lab-image">
                 <div class="warning">
                     <strong>⚠️ IMPORTANT:</strong><br>
                     - <strong>Do NOT share this token with anyone</strong><br>
@@ -950,22 +974,20 @@
                     <li><strong>You should see a login widget with an input field labeled "Access Token"</strong></li>
                     <li><strong>Paste your access token:</strong>
                         <ul>
-                            
+
                             <li>Click in the access token input field</li>
                             <li>Press <code>Ctrl+V</code> (Windows/Linux) or <code>Cmd+V</code> (Mac)</li>
                             <li>You should see the long token string appear</li>
                         </ul>
                     </li>
-                    <li><strong>Click the "Login" or "Connect" button</strong></li>
+                    <li><strong>Click the "Connect" button</strong></li>
                 </ol>
-
-                <h4>6.2 Successful login indicators:</h4>
+                <img src="assets/image6.jpg" alt="Image 6" width="40%" height="40%" class="lab-image">
+                <h4>6.2 Successful login:</h4>
                 <ul>
-                    <li>You might see a success message</li>
-                    <li>The UI might change to show agent status</li>
-                    <li>Additional widgets or sections might appear</li>
+                    <li>On successful login, you will see something like this</li>
                 </ul>
-
+                <img src="assets/image7.jpg" alt="Image 7" width="40%" height="40%" class="lab-image">
                 <div class="warning">
                     <strong><span class="xmark">❌</span> If login fails:</strong><br>
                     - Verify you copied the complete token (it's very long)<br>
@@ -975,163 +997,410 @@
                 </div>
             </div>
 
-            <!-- Page 9: Step 7 - Implement Additional Widgets -->
+            <!-- Page 9: Step 7 - Implement Station Widget -->
             <div class="lab-page" data-page="9">
-                <h2>Step 7: Implement Additional Widgets Step-by-Step</h2>
-                <p>Now comes the exciting part! You'll add more functionality by implementing additional widgets one at a time.</p>
+                <h2>Step 7: Implement Station Widget</h2>
+                <p>Now we'll implement the Station Login widget, which allows agents to log into the Contact Center.</p>
 
-                <h4>7.1 Understanding the Process</h4>
-                <p>For each widget, you'll:</p>
+                <h4>7.1 Open Visual Studio Code</h4>
                 <ol>
-                    <li>Look at the provided code in the GitHub repository</li>
-                    <li>Copy the code for a specific widget</li>
-                    <li>Paste it into the appropriate file in your project</li>
-                    <li>Save the file</li>
-                    <li>The application will automatically reload with the new widget</li>
+                    <li><strong>Open Visual Studio Code:</strong>
+                        <ul>
+                            <li><strong>Mac:</strong> Press <code>Cmd + Space</code>, type "Visual Studio Code" or "Code", then press Enter</li>
+                            <li><strong>Windows:</strong> Press <code>Win</code> key, type "Visual Studio Code", then press Enter</li>
+                            <li><strong>Linux:</strong> Open from your applications menu or type <code>code</code> in terminal</li>
+                        </ul>
+                    </li>
+                    <li><strong>Open the project folder:</strong>
+                        <ul>
+                            <li>In VS Code: <strong>File → Open Folder</strong></li>
+                            <li>Navigate to and select the <code>cti-wxcc-widgets</code> folder (the one you cloned in Step 2)</li>
+                            <li>Click <strong>"Select Folder"</strong></li>
+                        </ul>
+                    </li>
+                    <li><strong>You should see the project structure in the left sidebar:</strong>
+                       <img src="assets/image8.jpg" alt="Image 8" width="80%" height="80%" class="lab-image">
+                    </li>
                 </ol>
 
-                <h4>7.2 Open the Lab Instructions</h4>
+                <h4>7.2 Implement Station Login Widget</h4>
+                <p>Follow these steps to add the Station Login widget:</p>
+
                 <ol>
-                    <li><strong>In your browser, open a new tab</strong></li>
-                    <li><strong>Go to the GitHub repository:</strong><br>
-                        <code>https://github.com/wxsd-sales/cti-wxcc-widgets</code>
-                    </li>
-                    <li><strong>Look for a file called <code>LAB_INSTRUCTIONS.md</code> or similar</strong>
+                    <li><strong>Open the file <code>src/App.tsx</code></strong>
                         <ul>
-                            <li>This file contains the step-by-step widget implementation instructions</li>
-                            <li>It tells you exactly which code to copy and where to paste it</li>
+                            <li>In VS Code, click on <code>src</code> folder in the left sidebar</li>
+                            <li>Click on <code>App.tsx</code> to open it</li>
+                        </ul>
+                    </li>
+                    <li><strong>Find the TODO comment:</strong>
+                        <ul>
+                            <li>Press <code>Ctrl+F</code> (Windows/Linux) or <code>Cmd+F</code> (Mac) to open search</li>
+                            <li>Search for: 
+                                <div class="code-block"><code>TODO: STEP 1 - STATION LOGIN WIDGET</code><button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div></li>
+                        </ul>
+                    </li>
+                    <li><strong>Replace the TODO comment with the Station Login widget code:</strong>
+                        <div class="code-block"><pre><code>{/* TODO: STEP 1 - STATION LOGIN WIDGET */}
+&lt;StationLogin
+  profileMode={false}
+  onLogin={() =&gt; {
+    setIsLoggedIn(true);
+    console.log('Agent logged in successfully!');
+  }}
+  onLogout={() =&gt; {
+    setIsLoggedIn(false);
+    console.log('Agent logged out');
+  }}
+/&gt;</code></pre><button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
+                    </li>
+                    <li><strong>Save the file:</strong>
+                        <ul>
+                            <li>Press <code>Ctrl+S</code> (Windows/Linux) or <code>Cmd+S</code> (Mac)</li>
+                            <li>Or click <strong>File → Save</strong></li>
                         </ul>
                     </li>
                 </ol>
 
-                <h4>7.3 Open Your Code Editor</h4>
+                <h4>7.3 Verify the Implementation</h4>
                 <ol>
-                    <li><strong>Open the project folder in your preferred code editor:</strong>
-                        <ul>
-                            <li><strong>Visual Studio Code (recommended):</strong>
-                                <ul>
-                                    <li>Open VS Code</li>
-                                    <li>File → Open Folder → Select <code>cti-wxcc-widgets</code> folder</li>
-                                </ul>
-                            </li>
-                            <li><strong>Other editors:</strong> Open the <code>cti-wxcc-widgets</code> folder however your editor requires</li>
-                        </ul>
-                    </li>
-                    <li><strong>You should see the project structure:</strong>
-                        <div class="code-block">cti-wxcc-widgets/
-├── src/
-│   ├── components/
-│   ├── App.js
-│   └── ...
-├── public/
-├── package.json
-└── ...<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
-                    </li>
-                </ol>
-
-                <h4>7.4 Implement Widget #1: Agent Desktop Widget</h4>
-                <p><strong>Follow the instructions from the GitHub LAB_INSTRUCTIONS.md file for each widget. Here's the general process:</strong></p>
-
-                <ol>
-                    <li><strong>Find the widget code in the repository</strong>
-                        <ul><li>Example: Look for <code>Step 1: Agent Desktop Widget</code> in the instructions</li></ul>
-                    </li>
-                    <li><strong>Copy the provided code snippet</strong></li>
-                    <li><strong>Open the specified file</strong> (e.g., <code>src/App.js</code> or <code>src/components/AgentDesktop.js</code>)</li>
-                    <li><strong>Find the section to replace</strong> (usually marked with comments like <code>// TODO: Step 1</code>)</li>
-                    <li><strong>Paste the code</strong> in the correct location</li>
-                    <li><strong>Save the file</strong> (<code>Ctrl+S</code> or <code>Cmd+S</code>)</li>
-                    <li><strong>Check your application:</strong>
-                        <ul>
-                            <li>Go back to your browser tab with <code>http://localhost:3000</code></li>
-                            <li>The page should automatically reload</li>
-                            <li>You should see the new widget appear</li>
-                        </ul>
-                    </li>
-                    <li><strong>Verify the widget works:</strong>
-                        <ul>
-                            <li>Test any buttons or functionality</li>
-                            <li>Make sure there are no error messages in the browser console</li>
-                        </ul>
-                    </li>
-                </ol>
-
-                <div class="note">
-                    <strong>Browser Console:</strong><br>
-                    - Press <code>F12</code> to open Developer Tools<br>
-                    - Click "Console" tab<br>
-                    - This shows errors if something goes wrong
+                    <li><strong>Go back to your browser</strong> with the application running (<code>http://localhost:5173</code>)</li>
+                    <li><strong>The page should automatically reload</strong> (hot reload feature)</li>
+                    
+                    <div class="note">
+                    If you manually reload the page, you will need to add the access token again
                 </div>
-
-                <h4>7.5 Implement Remaining Widgets</h4>
-                <p><strong>Repeat the process above for each widget in order:</strong></p>
-
-                <p>Typical widgets you'll implement (check your specific LAB_INSTRUCTIONS.md):</p>
-                <ol>
-                    <li><span class="checkmark">✅</span> Login Widget (already done in Step 6)</li>
-                    <li>Agent Desktop Widget</li>
-                    <li>Call Controls Widget</li>
-                    <li>Task List Widget</li>
-                    <li>Agent Status Widget</li>
-                    <li>Screen Pop Widget</li>
+                    <li><strong>After connecting with your access token, you should see:</strong>
+                        <ul>
+                            <li>The Station Login form appears in the CTI panel</li>
+                        </ul>
+                    </li>
+                    <img src="assets/image9.jpg" alt="Image 9" width="40%" height="40%" class="lab-image">
+                    <li><strong>Then:</strong>
+                        <ul>
+                            <li>Select "Desktop" from the dropdown under "Handle Calls Using:"</li>
+                            <li>Under "Your Team" select the team it is showing in the dropdown</li>
+                            <li>Click on "Save & Continue" button</li>
+                        </ul>
+                    </li>
+                    <img src="assets/image10.jpg" alt="Image 10" width="40%" height="40%" class="lab-image">
                 </ol>
-
-                <div class="warning">
-                    <strong>⚠️ Important:</strong><br>
-                    - <strong>Implement widgets in the order specified</strong> in the lab instructions<br>
-                    - <strong>Don't skip steps</strong> - later widgets might depend on earlier ones<br>
-                    - <strong>Test each widget</strong> before moving to the next<br>
-                    - <strong>Save all files</strong> as you go
-                </div>
 
                 <div class="success">
-                    <strong>After implementing all widgets, you should see:</strong><br>
-                    - A complete agent interface<br>
-                    - Multiple widget panels<br>
-                    - Agent status indicators<br>
-                    - Call control buttons<br>
-                    - Task management area
+                    <strong><span class="checkmark">✅</span> Success indicators:</strong><br>
+                    - You see "Agent logged in successfully!" in the browser console<br>
+                    - The Station Login form disappears or changes state<br>
+                    - Additional widgets or UI elements may appear
+                </div>
+                <img src="assets/image11.jpg" alt="Image 11" width="40%" height="40%" class="lab-image">
+                <div class="note">
+                    <strong>💡 Tip:</strong> If the page doesn't auto-reload, manually refresh your browser (<code>F5</code> or <code>Ctrl+R</code>)
+                </div>
+
+                <div class="warning">
+                    <strong><span class="xmark">❌</span> If you encounter errors:</strong><br>
+                    - Check the browser console (F12 → Console tab) for error messages<br>
+                    - Verify you copied the code exactly as shown<br>
+                    - Make sure you saved the file after making changes<br>
+                    - Check that the application is still running in your terminal
                 </div>
             </div>
 
-            <!-- Page 10: Step 8 - Prepare for Call Testing -->
+            <!-- Page 10: Step 8 - Implement User State Widget -->
             <div class="lab-page" data-page="10">
-                <h2>Step 8: Prepare for Call Testing</h2>
-                <p>Now let's set up to receive and handle a test call!</p>
+                <h2>Step 8: Implement User State Widget</h2>
+                <p>Now we'll implement the User State widget, which allows agents to change their availability status.</p>
 
-                <h4>8.1 Verify Agent Status</h4>
+                <h4>8.1 Open the File</h4>
                 <ol>
-                    <li><strong>In your custom application</strong>, check:
+                    <li><strong>In Visual Studio Code, open the file <code>src/App.tsx</code></strong>
                         <ul>
-                            <li>Your agent name/email is displayed</li>
-                            <li>Agent status shows as "Available" or similar</li>
-                            <li>No error messages are visible</li>
-                            <li>All widgets are loaded and visible</li>
+                            <li>If it's not already open, click on <code>src</code> folder in the left sidebar</li>
+                            <li>Click on <code>App.tsx</code> to open it</li>
                         </ul>
                     </li>
-                    <li><strong>If agent status is not "Available":</strong>
+                    <li><strong>Find the TODO comment:</strong>
                         <ul>
-                            <li>Look for a status selector widget</li>
-                            <li>Change status to "Available" or "Ready"</li>
+                            <li>Press <code>Ctrl+F</code> (Windows/Linux) or <code>Cmd+F</code> (Mac) to open search</li>
+                            <li>Search for: <div class="code-block"><code>TODO: STEP 2 - USER STATE WIDGET</code><button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div></li>
                         </ul>
                     </li>
                 </ol>
 
-                <h4>8.2 Open Webex App (Supervisor)</h4>
+                <h4>8.2 Implement User State Widget</h4>
                 <ol>
-                    <li><strong>Download Webex App</strong> (if not already installed):
+                    <li><strong>Replace the TODO comment with the User State widget code:</strong>
+                        <div class="code-block"><pre><code>{/* TODO: STEP 2 - USER STATE WIDGET */}
+&lt;UserState
+  onStateChange={(status: any) =&gt; {
+    console.log('Agent state changed to:', status?.name);
+  }}
+/&gt;
+</code></pre>
+<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
+                    </li>
+                    <li><strong>Save the file:</strong>
                         <ul>
-                            <li>Go to: <code>https://www.webex.com/downloads.html</code></li>
-                            <li>Download Webex for your operating system</li>
-                            <li>Install the application</li>
-                            <li><strong>OR</strong> use the web version at <code>https://web.webex.com</code></li>
+                            <li>Press <code>Ctrl+S</code> (Windows/Linux) or <code>Cmd+S</code> (Mac)</li>
+                            <li>Or click <strong>File → Save</strong></li>
                         </ul>
                     </li>
-                    <li><strong>Open Webex App</strong></li>
-                    <li><strong>Login with SUPERVISOR credentials:</strong>
+                </ol>
+
+                <h4>8.3 Verify the Implementation</h4>
+                <ol>
+                    <li><strong>Go back to your browser</strong> with the application running (<code>http://localhost:5173</code>)</li>
+                    <li><strong>The page should automatically reload</strong> (hot reload feature)</li>
+                    
+                    <div class="note">
+                        <strong>💡 Note:</strong> If you manually reload the page, you will need to add the access token again and log in with your station credentials.
+                    </div>
+
+                    <li><strong>After logging in with your station credentials, you should see:</strong>
                         <ul>
-                            <li>Email: [Your supervisor email from credentials section]</li>
-                            <li>Password: [Your supervisor password from credentials section]</li>
+                            <li>A Status dropdown appears in the CTI panel</li>
+                            <li>Various status options (Available, Meeting etc.)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Change your status:</strong>
+                        <ul>
+                            <li>Click on the Status dropdown</li>
+                            <li>Select <strong>"Available"</strong> to receive calls</li>
+                        </ul>
+                    </li>
+                    <img src="assets/image12.jpg" alt="Image 12" width="40%" height="40%" class="lab-image">
+                </ol>
+
+                <div class="success">
+                    <strong><span class="checkmark">✅</span> Success indicators:</strong><br>
+                    - You see "Agent state changed to: Available" (or the selected status) in the browser console<br>
+                    - The status dropdown is visible and functional<br>
+                    - You can change between different status options
+                </div>
+
+                <div class="warning">
+                    <strong><span class="xmark">❌</span> If you encounter errors:</strong><br>
+                    - Check the browser console (F12 → Console tab) for error messages<br>
+                    - Verify you copied the code exactly as shown<br>
+                    - Make sure you saved the file after making changes<br>
+                    - Ensure you're logged in with your station credentials first<br>
+                    - Check that the application is still running in your terminal
+                </div>
+            </div>
+
+            <!-- Page 11: Step 9 - Implement Task List Widget -->
+            <div class="lab-page" data-page="11">
+                <h2>Step 9: Implement Task List Widget</h2>
+                <p>Now we'll implement the Task List widget, which shows incoming and active customer interactions.</p>
+
+                <h4>9.1 Open the File</h4>
+                <ol>
+                    <li><strong>In Visual Studio Code, open the file <code>src/App.tsx</code></strong>
+                        <ul>
+                            <li>If it's not already open, click on <code>src</code> folder in the left sidebar</li>
+                            <li>Click on <code>App.tsx</code> to open it</li>
+                        </ul>
+                    </li>
+                    <li><strong>Find the TODO comment:</strong>
+                        <ul>
+                            <li>Press <code>Ctrl+F</code> (Windows/Linux) or <code>Cmd+F</code> (Mac) to open search</li>
+                            <li>Search for: <div class="code-block"><code>TODO: STEP 3 - TASK LIST WIDGET</code><button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div></li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>9.2 Implement Task List Widget</h4>
+                <ol>
+                    <li><strong>Replace the TODO comment with the Task List widget code:</strong>
+                        <div class="code-block"><pre><code>{/* TODO: STEP 3 - TASK LIST WIDGET */}
+&lt;TaskList
+  onTaskAccepted={(task: any) =&gt; {
+    console.log('Task accepted:', task);
+  }}
+  onTaskDeclined={(task: any, reason: any) =&gt; {
+    console.log('Task declined:', task, 'Reason:', reason);
+  }}
+  onTaskSelected={({ task, isClicked }: any) =&gt; {
+    setSelectedTask(task);
+    console.log('Task selected:', task?.data?.mediaType);
+  }}
+/&gt;
+</code></pre>
+<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
+                    </li>
+                    <li><strong>Save the file:</strong>
+                        <ul>
+                            <li>Press <code>Ctrl+S</code> (Windows/Linux) or <code>Cmd+S</code> (Mac)</li>
+                            <li>Or click <strong>File → Save</strong></li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>9.3 Verify the Implementation</h4>
+                <ol>
+                    <li><strong>Go back to your browser</strong> with the application running (<code>http://localhost:5173</code>)</li>
+                    <li><strong>The page should automatically reload</strong> (hot reload feature)</li>
+                    
+                    <div class="note">
+                        <strong>💡 Note:</strong> If you manually reload the page, you will need to add the access token again and log in with your station credentials.
+                    </div>
+
+                    <li><strong>After logging in with your station credentials, you should see:</strong>
+                        <ul>
+                            <li>A <strong>Tasks</strong> section appears in the CTI panel</li>
+                            <li>The task list area is visible and ready to display incoming interactions</li>
+                        </ul>
+                    </li>
+                    <li><strong>We are not testing this widget now</strong></li>
+                    <li><strong>But in the later steps, when you receive a call:</strong>
+                        <ul>
+                            <li>The incoming call will appear in the Tasks section</li>
+                            <li>You'll see task information such as caller details and media type</li>
+                            <li>You can accept or decline the task from this list</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="success">
+                    <strong><span class="checkmark">✅</span> Success indicators:</strong><br>
+                    - The Tasks section is visible in the CTI panel<br>
+                    - When a call arrives, it appears in the task list<br>
+                    - You can see task details and interact with incoming tasks<br>
+                    - Console messages appear when tasks are accepted, declined, or selected
+                </div>
+
+                <div class="warning">
+                    <strong><span class="xmark">❌</span> If you encounter errors:</strong><br>
+                    - Check the browser console (F12 → Console tab) for error messages<br>
+                    - Verify you copied the code exactly as shown<br>
+                    - Make sure you saved the file after making changes<br>
+                    - Ensure you're logged in with your station credentials first<br>
+                    - Check that the application is still running in your terminal<br>
+                    - Verify that <code>setSelectedTask</code> is defined in your component state
+                </div>
+            </div>
+
+            <!-- Page 12: Step 10 - Implement Call Control Widget -->
+            <div class="lab-page" data-page="12">
+                <h2>Step 10: Implement Call Control Widget</h2>
+                <p>Now we'll implement the Call Control widget, which provides buttons to control active calls. It appears as a floating bar at the bottom-center during active calls.</p>
+
+                <h4>10.1 Open the File</h4>
+                <ol>
+                    <li><strong>In Visual Studio Code, open the file <code>src/App.tsx</code></strong>
+                        <ul>
+                            <li>If it's not already open, click on <code>src</code> folder in the left sidebar</li>
+                            <li>Click on <code>App.tsx</code> to open it</li>
+                        </ul>
+                    </li>
+                    <li><strong>Find the TODO comment:</strong>
+                        <ul>
+                            <li>Press <code>Ctrl+F</code> (Windows/Linux) or <code>Cmd+F</code> (Mac) to open search</li>
+                            <li>Search for: <div class="code-block"><code>TODO: STEP 4 - FLOATING CALL CONTROL WIDGET</code><button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div></li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>10.2 Implement Call Control Widget</h4>
+                <ol>
+                    <li><strong>Replace the TODO comment with the Call Control widget code:</strong>
+                        <div class="code-block"><pre><code>{/* TODO: STEP 4 - FLOATING CALL CONTROL WIDGET */}
+{isLoggedIn && selectedTask && (
+  &lt;div className="floating-call-control"&gt;
+    &lt;div className="call-control-header"&gt;
+      &lt;span className="call-indicator"&gt;&lt;/span&gt;
+      &lt;span&gt;Active Call&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div className="call-control-content"&gt;
+      &lt;CallControl
+        onHoldResume={({ isHeld, task }: any) =&gt; {
+          console.log(isHeld ? 'Call on hold' : 'Call resumed');
+        }}
+        onEnd={({ task }: any) =&gt; {
+          console.log('Call ended - waiting for wrapup');
+        }}
+        onWrapUp={(params: any) =&gt; {
+          console.log('Wrap up completed', params?.wrapUpReason);
+          setSelectedTask(null);
+        }}
+        onToggleMute={({ isMuted, task }: any) =&gt; {
+          console.log(isMuted ? 'Call muted' : 'Call unmuted');
+        }}
+        onRecordingToggle={({ isRecording, task }: any) =&gt; {
+          console.log(isRecording ? 'Recording started' : 'Recording stopped');
+        }}
+      /&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+)}</code></pre><button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
+                    </li>
+                    <li><strong>Save the file:</strong>
+                        <ul>
+                            <li>Press <code>Ctrl+S</code> (Windows/Linux) or <code>Cmd+S</code> (Mac)</li>
+                            <li>Or click <strong>File → Save</strong></li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>10.3 Verify the Implementation</h4>
+                <ol>
+                    <li><strong>Go back to your browser</strong> with the application running (<code>http://localhost:5173</code>)</li>
+                    <li><strong>The page should automatically reload</strong> (hot reload feature)</li>
+                    
+                    <div class="note">
+                        <strong>💡 Note:</strong> If you manually reload the page, you will need to add the access token again and log in with your station credentials.
+                    </div>
+
+                    <li><strong>Important:</strong> The Call Control widget will only appear when:
+                        <ul>
+                            <li>You are logged in (<code>isLoggedIn</code> is true)</li>
+                            <li>You have an active call selected (<code>selectedTask</code> is not null)</li>
+                        </ul>
+                    </li>
+                    <li><strong>When you have an active call (in later steps):</strong>
+                        <ul>
+                            <li>The Call Control bar appears at the bottom-center of the screen</li>
+                            <li>You'll see an "Active Call" header with a call indicator</li>
+                            <li>Call control buttons are available (Hold, Mute, End Call, etc.)</li>
+                            <li>The widget stays visible during the wrapup phase after ending a call</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="success">
+                    <strong><span class="checkmark">✅</span> Success indicators:</strong><br>
+                    - The code compiles without errors<br>
+                    - When you have an active call, the floating Call Control bar appears<br>
+                    - All call control buttons are functional<br>
+                    - Console messages appear when you interact with call controls<br>
+                    - The widget remains visible during wrapup phase
+                </div>
+
+                <div class="warning">
+                    <strong><span class="xmark">❌</span> If you encounter errors:</strong><br>
+                    - Check the browser console (F12 → Console tab) for error messages<br>
+                    - Verify you copied the code exactly as shown<br>
+                    - Make sure you saved the file after making changes<br>
+                    - Ensure <code>isLoggedIn</code> and <code>selectedTask</code> state variables are properly defined<br>
+                    - Verify that <code>setSelectedTask</code> is defined in your component state<br>
+                    - Check that the application is still running in your terminal<br>
+                    - <strong>Note:</strong> The widget won't appear until you have an active call, which we'll test in later steps
+                </div>
+            </div>
+
+            <!-- Page 13: Step 11 - Prepare for Call Testing -->
+            <div class="lab-page" data-page="13">
+                <h2>Step 11: Prepare for Call Testing</h2>
+                <p>Now let's set up to receive and handle a test call!</p>
+
+                
+
+                <h4>11.1 Open Webex App (Supervisor)</h4>
+                <ol>
+                    <li><strong>Login with USER2 credentials:</strong>
+                        <ul>
+                            <li>Email: [Your user2 email from credentials section]</li>
+                            <li>Password: [Your user2 password from credentials section]</li>
                         </ul>
                     </li>
                     <li><strong>Wait for Webex to fully load:</strong>
@@ -1140,27 +1409,25 @@
                             <li>Calling features should be available</li>
                         </ul>
                     </li>
+                    <img src="assets/image13.jpeg" alt="Image 13" width="80%" height="80%" class="lab-image">
                 </ol>
-
-                <div class="info">
-                    <strong>Why supervisor?</strong> The supervisor account is used to place test calls into the contact center queue that your agent will receive.
-                </div>
             </div>
 
-            <!-- Page 11: Step 9 - Make a Test Call -->
-            <div class="lab-page" data-page="11">
-                <h2>Step 9: Make a Test Call</h2>
+            <!-- Page 14: Step 12 - Make a Test Call -->
+            <div class="lab-page" data-page="14">
+                <h2>Step 12: Make a Test Call</h2>
                 <p>This is the moment of truth! Let's test the complete integration.</p>
 
-                <h4>9.1 Supervisor Places the Call</h4>
+                <h4>12.1 User2 Places the Call</h4>
                 <ol>
-                    <li><strong>In the Webex App (logged in as supervisor):</strong></li>
+                    <li><strong>In the Webex App (logged in as user2):</strong></li>
                     <li><strong>Find the calling/dial pad feature:</strong>
                         <ul>
                             <li>Look for a phone icon or "Call" button</li>
                             <li>Click to open the dial pad</li>
                         </ul>
                     </li>
+                    <img src="assets/image14.jpeg" alt="Image 14" width="80%" height="80%" class="lab-image">
                     <li><strong>Dial the test number:</strong>
                         <ul>
                             <li>Enter the number provided by your instructor</li>
@@ -1176,9 +1443,9 @@
                     </li>
                 </ol>
 
-                <h4>9.2 Agent Receives the Call</h4>
+                <h4>12.2 Agent Receives the Call</h4>
                 <ol>
-                    <li><strong>Switch to your custom application</strong> (<code>http://localhost:3000</code>)</li>
+                    <li><strong>Switch to your custom application</strong> (<code>http://localhost:5173</code>)</li>
                     <li><strong>Watch for incoming call notification:</strong>
                         <ul>
                             <li>You should see a call notification appear</li>
@@ -1195,9 +1462,10 @@
                             <li>"Decline" or "Reject" button</li>
                         </ul>
                     </li>
+                    <img src="assets/image15.jpeg" alt="Image 15" width="80%" height="80%" class="lab-image">
                 </ol>
 
-                <h4>9.3 Answer the Call</h4>
+                <h4>12.3 Answer the Call</h4>
                 <ol>
                     <li><strong>Click the "Answer" button</strong> in your custom application</li>
                     <li><strong>Call should connect:</strong>
@@ -1207,6 +1475,7 @@
                             <li>Call control buttons become active (Hold, Mute, Transfer, etc.)</li>
                         </ul>
                     </li>
+                    <img src="assets/image16.jpeg" alt="Image 16" width="80%" height="80%" class="lab-image">
                     <li><strong>Test the audio:</strong>
                         <ul>
                             <li>Speak into your computer microphone</li>
@@ -1224,97 +1493,14 @@
                     - Try refreshing the page and answering again
                 </div>
 
-                <h4>9.4 Test Call Controls</h4>
-                <p>While the call is active, test the various call controls:</p>
-
-                <ol>
-                    <li><strong>Mute/Unmute:</strong>
-                        <ul>
-                            <li>Click "Mute" button</li>
-                            <li>Verify the supervisor can't hear you</li>
-                            <li>Click "Unmute"</li>
-                            <li>Verify audio returns</li>
-                        </ul>
-                    </li>
-                    <li><strong>Hold/Resume:</strong>
-                        <ul>
-                            <li>Click "Hold" button</li>
-                            <li>Verify the supervisor hears hold music or silence</li>
-                            <li>Click "Resume"</li>
-                            <li>Verify audio returns</li>
-                        </ul>
-                    </li>
-                    <li><strong>End Call:</strong>
-                        <ul>
-                            <li>Click "End Call" or "Hang Up" button</li>
-                            <li>Call should disconnect</li>
-                            <li>Call status should update</li>
-                            <li>Task should move to completed or wrap-up state</li>
-                        </ul>
-                    </li>
-                    <li><strong>In the Webex App:</strong>
-                        <ul>
-                            <li>The supervisor should also see the call end</li>
-                            <li>Call should disconnect cleanly</li>
-                        </ul>
-                    </li>
-                </ol>
+                
             </div>
 
-            <!-- Page 12: Step 10 - Verify Complete Integration -->
-            <div class="lab-page" data-page="12">
-                <h2>Step 10: Verify Complete Integration</h2>
-                <p>Let's do a final check to ensure everything is working correctly.</p>
+            <!-- Page 15: Step 13 - Verify Complete Integration -->
+            
 
-                <h4>10.1 Make Another Test Call</h4>
-                <ol>
-                    <li><strong>Set agent status back to "Available"</strong></li>
-                    <li><strong>Have the supervisor place another call</strong></li>
-                    <li><strong>This time, observe the complete flow:</strong>
-                        <ul>
-                            <li>Call arrives in the task list</li>
-                            <li>You can see caller information</li>
-                            <li>You answer the call</li>
-                            <li>All widgets update appropriately</li>
-                            <li>Call controls work</li>
-                            <li>You can end the call successfully</li>
-                        </ul>
-                    </li>
-                </ol>
-
-                <h4>10.2 Check All Widgets</h4>
-                <p>Verify each widget is functioning:</p>
-                <ul>
-                    <li><span class="checkmark">✅</span> <strong>Login Widget:</strong> Shows you're authenticated</li>
-                    <li><span class="checkmark">✅</span> <strong>Agent Desktop:</strong> Displays agent information</li>
-                    <li><span class="checkmark">✅</span> <strong>Call Controls:</strong> All buttons work (answer, hold, mute, end)</li>
-                    <li><span class="checkmark">✅</span> <strong>Task List:</strong> Shows active and completed tasks</li>
-                    <li><span class="checkmark">✅</span> <strong>Agent Status:</strong> Displays current status, allows changes</li>
-                    <li><span class="checkmark">✅</span> <strong>Screen Pop:</strong> Shows caller information (if implemented)</li>
-                </ul>
-
-                <h4>10.3 Test Error Scenarios</h4>
-                <ol>
-                    <li><strong>Try declining a call:</strong>
-                        <ul>
-                            <li>Have supervisor place a call</li>
-                            <li>Click "Decline" instead of "Answer"</li>
-                            <li>Verify the call is properly rejected</li>
-                        </ul>
-                    </li>
-                    <li><strong>Change agent status to "Offline":</strong>
-                        <ul>
-                            <li>New calls shouldn't arrive</li>
-                            <li>Have supervisor call again</li>
-                            <li>Call should go to another agent or queue</li>
-                        </ul>
-                    </li>
-                    <li><strong>Change back to "Available"</strong></li>
-                </ol>
-            </div>
-
-            <!-- Page 13: Congratulations & Troubleshooting -->
-            <div class="lab-page" data-page="13">
+            <!-- Page 16: Congratulations & Troubleshooting -->
+            <div class="lab-page" data-page="15">
                 <h2>Congratulations!</h2>
                 <p>You have successfully completed the Webex Contact Center Widget Integration Lab!</p>
 
@@ -1335,76 +1521,10 @@
                     <li><strong>Custom interfaces</strong> can be built while leveraging Webex Contact Center backend</li>
                 </ol>
 
-                <div class="separator"></div>
-
-                <h2>Troubleshooting Guide</h2>
-
-                <h3>Common Issues and Solutions</h3>
-
-                <div class="warning">
-                    <h4>Issue: "npm: command not found"</h4>
-                    <strong>Solution:</strong><br>
-                    - Node.js is not installed or not in PATH<br>
-                    - Contact your instructor for assistance
-                </div>
-
-                <div class="warning">
-                    <h4>Issue: Application won't start</h4>
-                    <strong>Solution:</strong><br>
-                    - Make sure you ran <code>npm install</code> first<br>
-                    - Check for error messages in the terminal<br>
-                    - Try: <code>rm -rf node_modules && npm install</code> (deletes and reinstalls packages)
-                </div>
-
-                <div class="warning">
-                    <h4>Issue: Access token not working</h4>
-                    <strong>Solution:</strong><br>
-                    - Make sure you copied the complete token<br>
-                    - Remove any extra spaces before/after the token<br>
-                    - Verify you're logged in as the agent (not supervisor)<br>
-                    - Token expires after 12 hours - get a new one if needed
-                </div>
-
-                <div class="warning">
-                    <h4>Issue: Widgets not appearing</h4>
-                    <strong>Solution:</strong><br>
-                    - Check browser console (F12) for errors<br>
-                    - Verify you saved the file after pasting code<br>
-                    - Make sure you pasted code in the correct location<br>
-                    - Try refreshing the browser
-                </div>
-
-                <div class="warning">
-                    <h4>Issue: Call not arriving</h4>
-                    <strong>Solution:</strong><br>
-                    - Verify agent status is "Available"<br>
-                    - Check that you're dialing the correct test number<br>
-                    - Make sure the application is still running (check terminal)<br>
-                    - Verify you're logged in as agent in the custom app
-                </div>
-
-                <div class="warning">
-                    <h4>Issue: No audio during call</h4>
-                    <strong>Solution:</strong><br>
-                    - Check browser permissions for microphone/speaker<br>
-                    - Look for a browser permission popup and click "Allow"<br>
-                    - Check system volume settings<br>
-                    - Try using headphones<br>
-                    - Refresh and try again
-                </div>
-
-                <div class="warning">
-                    <h4>Issue: Widgets crash after implementing code</h4>
-                    <strong>Solution:</strong><br>
-                    - Check for syntax errors in the code you pasted<br>
-                    - Compare your code with the GitHub repository<br>
-                    - Look at the browser console for specific error messages<br>
-                    - Undo your last change and try again
-                </div>
             </div>
 
-            <!-- Page 14: Additional Resources & Cleanup -->
-            <div class="lab-page" data-page="14">
+            <!-- Page 17: Additional Resources & Cleanup -->
+            <div class="lab-page" data-page="16">
                 <h2>Additional Resources</h2>
                 <ul>
                     <li><strong>Webex Contact Center Documentation:</strong> <a href="https://developer.webex.com/docs/contact-center" target="_blank">https://developer.webex.com/docs/contact-center</a></li>
@@ -1458,7 +1578,7 @@ rm -rf cti-wxcc-widgets<button class="code-copy-btn" onclick="copyCodeBlock(this
         <!-- NAVIGATION BAR - Fixed at bottom -->
         <div id="navigation">
             <button class="nav-button" id="prevBtn">← Previous</button>
-            <span class="page-info">Page <span id="currentPageNum">1</span> of <span id="totalPages">14</span></span>
+            <span class="page-info">Page <span id="currentPageNum">1</span> of <span id="totalPages">17</span></span>
             <button class="nav-button" id="nextBtn">Next →</button>
         </div>
         </div> <!-- End main-content-wrapper -->
@@ -1492,7 +1612,25 @@ rm -rf cti-wxcc-widgets<button class="code-copy-btn" onclick="copyCodeBlock(this
         // Copy code block to clipboard
         function copyCodeBlock(button) {
             const codeBlock = button.parentElement;
-            const codeText = codeBlock.textContent.replace(button.textContent, '').trim();
+            const codeElement = codeBlock.querySelector('code');
+            const preElement = codeBlock.querySelector('pre');
+            let codeText;
+            
+            if (codeElement) {
+                // Get text from code element and decode HTML entities
+                codeText = codeElement.textContent || codeElement.innerText;
+            } else if (preElement) {
+                // Fallback to pre element
+                codeText = preElement.textContent || preElement.innerText;
+            } else {
+                // Fallback to getting all text content
+                codeText = codeBlock.textContent.replace(button.textContent, '').trim();
+            }
+            
+            // Decode HTML entities (for &lt; &gt; &amp; etc.)
+            const textarea = document.createElement('textarea');
+            textarea.innerHTML = codeText;
+            codeText = textarea.value;
             
             navigator.clipboard.writeText(codeText).then(() => {
                 const originalText = button.textContent;
@@ -1510,7 +1648,7 @@ rm -rf cti-wxcc-widgets<button class="code-copy-btn" onclick="copyCodeBlock(this
         }
 
         let currentPage = 1;
-        const totalPages = 14;
+        const totalPages = 17;
         let usersData = {};
         let currentUsername = '';
 
