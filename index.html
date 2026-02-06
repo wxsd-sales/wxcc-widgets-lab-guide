@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WXCC Widget Integration Lab Guide</title>
+    <title>Build a CTI Connector with WXCC Widgets - Lab Guide</title>
     <style>
         * {
             margin: 0;
@@ -599,7 +599,7 @@
     <div id="labGuideContainer" class="hidden">
         <!-- Sidebar Navigation -->
         <div class="sidebar">
-            <div class="sidebar-title">WXCC Lab Guide</div>
+            <div class="sidebar-title">CTI Connector Lab</div>
             <div class="sidebar-item" data-page="1">
                 <div class="sidebar-number">1</div>
                 <div class="sidebar-text">Lab Overview</div>
@@ -673,14 +673,19 @@
             <!-- Page 1 -->
             <div class="lab-page active" data-page="1">
                 <h2>Lab Overview</h2>
-                <p>In this hands-on lab, you will learn how to integrate Webex Contact Center (WXCC) widgets into a third-party web application.</p>
+                <p>In this hands-on lab, you will learn how to <strong>build a CTI (Computer Telephony Integration) connector</strong> using Webex Contact Center (WXCC) widgets. These powerful, embeddable widgets enable you to integrate contact center functionality into any web application — whether it's a custom portal, a CRM system like Salesforce or ServiceNow, or your own proprietary business applications.</p>
                 
+                <div class="info">
+                    <strong>💡 Key Insight:</strong> WXCC widgets are framework-agnostic and can be embedded into any web-based application, giving you the flexibility to bring contact center capabilities directly into your agents' existing workflows without forcing them to switch between multiple applications.
+                </div>
+
                 <h3>What You'll Build:</h3>
                 <ul>
-                    <li>A custom web application with WXCC widgets</li>
-                    <li>Agent login functionality</li>
-                    <li>Call handling capabilities</li>
-                    <li>Real-time contact center interface</li>
+                    <li><strong>Custom CTI Connector</strong> - A fully functional contact center interface</li>
+                    <li><strong>Agent Desktop</strong> - Login, status management, and profile information</li>
+                    <li><strong>Call Controls</strong> - Answer, hold, mute, transfer, and end call capabilities</li>
+                    <li><strong>Real-time Task Management</strong> - View and handle incoming interactions</li>
+                    <li><strong>Screen Pop Integration</strong> - Display caller information and context</li>
                 </ul>
                 
                 <h3>Time Required:</h3>
@@ -697,6 +702,10 @@
                     <li>Implement various WXCC widgets step-by-step</li>
                     <li>Test the integration with a live call scenario</li>
                 </ol>
+
+                <div class="success">
+                    <strong>🎯 Learning Outcome:</strong> After this lab, you'll be equipped to integrate Webex Contact Center capabilities into virtually any web-based application, enabling your organization to provide seamless contact center experiences within existing business tools and CRM platforms.
+                </div>
             <!-- </div> -->
 
             <!-- Page 3 -->
@@ -706,8 +715,8 @@
                 <ul>
                     <li>A computer with internet access</li>
                     <li>A modern web browser (Chrome, Firefox, or Edge recommended)</li>
-                    <li>Basic familiarity with using a terminal/command prompt</li>
-                    <li>A phone to make test calls</li>
+                    <li>Visula Studio Code or any other code editor and basic familiarity with using a terminal/command prompt</li>
+                    <li>A phone to make test calls or Webex Desktop Application</li>
                 </ul>
             </div>
 
@@ -715,6 +724,10 @@
             <div class="lab-page" data-page="2">
                 <h2>Your Sandbox Credentials</h2>
                 <p>These are your personal credentials for this lab:</p>
+                
+                <div class="info">
+                    <strong>📌 Important:</strong> You will be using these credentials throughout the lab at various steps. Use the sidebar to navigate back here anytime you need to reference or copy your credentials.
+                </div>
                 
                 <div class="credential-box">
                     <h4>Agent Credentials</h4>
@@ -763,7 +776,7 @@
 
                 <h4>2. Check Node.js version:</h4>
                 <div class="code-block">node --version<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
-                <p><strong>Expected output:</strong> You should see something like <code>v18.x.x</code> or <code>v20.x.x</code></p>
+                <p><strong>Expected output:</strong> You should see something like <code>v22.x.x</code></p>
 
                 <h4>3. Check npm version:</h4>
                 <div class="code-block">npm --version<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
@@ -787,11 +800,7 @@
 
                 <h4>1. Navigate to your desired directory:</h4>
                 <p>Choose where you want to download the lab files. For example:</p>
-                <div class="code-block"># Windows
-cd C:\Users\YourUsername\Desktop
-
-# Mac/Linux
-cd ~/Desktop<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
+                <div class="code-block">cd ~/Desktop<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
 
                 <h4>2. Clone the repository:</h4>
                 <div class="code-block">git clone https://github.com/wxsd-sales/cti-wxcc-widgets.git<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
@@ -803,11 +812,7 @@ cd ~/Desktop<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</bu
                 <div class="code-block">cd cti-wxcc-widgets<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
 
                 <h4>4. Verify the files are there:</h4>
-                <div class="code-block"># Windows
-dir
-
-# Mac/Linux
-ls<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
+                <div class="code-block">ls<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
                 <p><strong>Expected output:</strong> You should see files and folders including <code>package.json</code>, <code>src</code>, <code>public</code>, etc.</p>
             </div>
 
@@ -849,7 +854,7 @@ ls<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div
                 <p>Now let's run the application for the first time!</p>
 
                 <h4>1. Start the development server:</h4>
-                <div class="code-block">npm start<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
+                <div class="code-block">npm run dev<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
                 <div class="info">
                     <strong>What's happening?</strong> This command starts a local web server to run your application.
                 </div>
@@ -867,7 +872,7 @@ ls<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div
 
                 <h4>4. Your browser should automatically open:</h4>
                 <ul>
-                    <li>If it doesn't, manually open your browser and go to: <code>http://localhost:3000</code></li>
+                    <li>If it doesn't, manually open your browser and go to: <code>http://localhost:5173</code></li>
                 </ul>
 
                 <h4>5. You should see:</h4>
@@ -903,12 +908,6 @@ ls<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div
                         </ul>
                     </li>
                     <li><strong>Click "Sign In"</strong></li>
-                    <li><strong>If prompted for two-factor authentication:</strong>
-                        <ul>
-                            <li>Follow the prompts to complete authentication</li>
-                            <li>Check your email or phone for verification codes</li>
-                        </ul>
-                    </li>
                 </ol>
 
                 <h4>5.3 Get Your Access Token</h4>
@@ -932,7 +931,7 @@ ls<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div
                     <strong>⚠️ IMPORTANT:</strong><br>
                     - <strong>Do NOT share this token with anyone</strong><br>
                     - This token is valid for 12 hours<br>
-                    - Keep this browser tab open - you'll need to copy this token
+                    - Keep this browser tab open - you'll need to copy this token later as well
                 </div>
 
                 <div class="success">
@@ -947,10 +946,11 @@ ls<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div
 
                 <h4>6.1 Paste Your Access Token</h4>
                 <ol>
-                    <li><strong>Go back to your application tab</strong> (<code>http://localhost:3000</code>)</li>
+                    <li><strong>Go back to your application tab</strong> (<code>http://localhost:5173</code>)</li>
                     <li><strong>You should see a login widget with an input field labeled "Access Token"</strong></li>
                     <li><strong>Paste your access token:</strong>
                         <ul>
+                            
                             <li>Click in the access token input field</li>
                             <li>Press <code>Ctrl+V</code> (Windows/Linux) or <code>Cmd+V</code> (Mac)</li>
                             <li>You should see the long token string appear</li>

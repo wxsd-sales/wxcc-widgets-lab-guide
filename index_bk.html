@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WXCC Widget Integration Lab Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'CiscoSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Login Page Styles */
+        #loginContainer {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+        }
+
+        .login-page {
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+        }
+
+        .login-page h1 {
+            color: #1d1d1d;
+            font-size: 2rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .login-page p {
+            color: #5c5c5c;
+            font-size: 1rem;
+            margin-bottom: 40px;
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #1d1d1d;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #d4d4d4;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .input-group input:focus {
+            border-color: #049fd9;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px 24px;
+            background: #049fd9;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background: #037ba8;
+        }
+
+        /* Lab Guide Styles */
+        #labGuideContainer {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: white;
+        }
+
+        .lab-header {
+            background: #1d1d1d;
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #049fd9;
+        }
+
+        .lab-header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .user-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+
+        .logout-btn {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+        }
+
+        .lab-content {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            overflow-y: auto;
+        }
+
+        .lab-content h2 {
+            color: #1d1d1d;
+            font-size: 1.75rem;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #049fd9;
+            margin-top: 48px;
+            font-weight: 600;
+        }
+
+        .lab-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .lab-content h3 {
+            color: #1d1d1d;
+            font-size: 1.35rem;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .lab-content h4 {
+            color: #1d1d1d;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .lab-content p {
+            color: #5c5c5c;
+            line-height: 1.7;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        .lab-content ul, .lab-content ol {
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        .lab-content li {
+            color: #5c5c5c;
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        .lab-content strong {
+            color: #1d1d1d;
+            font-weight: 600;
+        }
+
+        .lab-content code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #d63384;
+        }
+
+        .lab-content a {
+            color: #049fd9;
+            text-decoration: none;
+        }
+
+        .lab-content a:hover {
+            text-decoration: underline;
+        }
+
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-left: 3px solid #049fd9;
+            padding: 16px 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #1d1d1d;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .code-block:hover {
+            background: #f0f6ff;
+            border-left-color: #037ba8;
+        }
+
+        .code-block-wrapper {
+            position: relative;
+        }
+
+        .code-copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #049fd9;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s ease;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .code-copy-btn:hover {
+            background: #037ba8;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .code-copy-btn.copied {
+            background: #52c41a;
+        }
+
+        .note {
+            background: #fff9e6;
+            border: 1px solid #ffe58f;
+            border-left: 3px solid #faad14;
+            padding: 16px 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .note strong {
+            color: #ad6800;
+        }
+
+        .warning {
+            background: #fff1f0;
+            border: 1px solid #ffccc7;
+            border-left: 3px solid #ff4d4f;
+            padding: 16px 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .warning strong {
+            color: #cf1322;
+        }
+
+        .success {
+            background: #f6ffed;
+            border: 1px solid #b7eb8f;
+            border-left: 3px solid #52c41a;
+            padding: 16px 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .success strong {
+            color: #389e0d;
+        }
+
+        .info {
+            background: #e6f7ff;
+            border: 1px solid #91d5ff;
+            border-left: 3px solid #1890ff;
+            padding: 16px 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .info strong {
+            color: #0050b3;
+        }
+
+        .credential-box {
+            background: #fafafa;
+            border: 1px solid #d4d4d4;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .credential-box h4 {
+            margin-top: 0;
+            color: #049fd9;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .credential-item {
+            background: white;
+            padding: 10px 16px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            border: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .credential-item:hover {
+            background: #f5f9ff;
+            border-color: #049fd9;
+        }
+
+        .credential-value {
+            flex: 1;
+        }
+
+        .copy-btn {
+            background: #049fd9;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+            margin-left: 10px;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            background: #037ba8;
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        .copy-btn.copied {
+            background: #52c41a;
+        }
+
+        .copyable {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .copy-icon {
+            display: inline-block;
+            margin-left: 8px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            font-size: 0.85rem;
+            color: #049fd9;
+        }
+
+        .credential-item:hover .copy-icon,
+        .code-block:hover .copy-icon {
+            opacity: 1;
+        }
+
+        .separator {
+            height: 1px;
+            background: #e0e0e0;
+            margin: 40px 0;
+        }
+
+        .checkmark {
+            color: #52c41a;
+            margin-right: 5px;
+        }
+
+        .xmark {
+            color: #ff4d4f;
+            margin-right: 5px;
+        }
+
+        /* Pagination Styles */
+        .lab-page {
+            display: none;
+        }
+
+        .lab-page.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .navigation-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 40px;
+            position: sticky;
+            bottom: 0;
+            background: white;
+            z-index: 10;
+        }
+
+        .nav-btn {
+            background: #049fd9;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn:hover {
+            background: #037ba8;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn:disabled {
+            background: #d4d4d4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .nav-btn:disabled:hover {
+            box-shadow: none;
+        }
+
+        .page-indicator {
+            color: #5c5c5c;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #049fd9;
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .navigation-controls {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .login-page {
+                padding: 24px;
+            }
+
+            .login-page h1 {
+                font-size: 1.5rem;
+            }
+
+            .lab-header {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+                padding: 16px 24px;
+            }
+
+            .lab-content {
+                padding: 24px;
+            }
+
+            .lab-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .lab-content h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginContainer">
+        <div class="login-page">
+            <h1>WXCC Widget Integration Lab</h1>
+            <p>Enter your username to access the lab guide</p>
+            <form class="login-form" id="loginForm">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        placeholder="e.g., user1"
+                        required
+                        autocomplete="off"
+                    >
+                </div>
+                <button type="submit" class="submit-btn">Access Lab Guide</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Lab Guide Page -->
+    <div id="labGuideContainer" class="hidden">
+        <div class="lab-header">
+            <div>
+                <h1>WXCC Widget Integration Lab Guide</h1>
+                <div class="user-badge">User: <span id="displayUsername"></span></div>
+            </div>
+            <button class="logout-btn" id="logoutBtn">← Back to Login</button>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="lab-content">
+            <!-- LAB GUIDE CONTENT STARTS HERE -->
+            
+            <!-- Page 1: Lab Overview -->
+            <div class="lab-page active" data-page="1">
+                <h2>Lab Overview</h2>
+                <p>In this hands-on lab, you will learn how to integrate Webex Contact Center (WXCC) widgets into a third-party web application. By the end of this lab, you will have a functional custom Contact Center application that can handle incoming calls.</p>
+
+                <h3>What You'll Build:</h3>
+                <ul>
+                    <li>A custom web application with WXCC widgets</li>
+                    <li>Agent login functionality</li>
+                    <li>Call handling capabilities</li>
+                    <li>Real-time contact center interface</li>
+                </ul>
+
+                <h3>Time Required:</h3>
+                <p>Approximately <strong>60 minutes</strong></p>
+            </div>
+
+            <!-- Page 2: Lab Objectives -->
+            <div class="lab-page" data-page="2">
+                <h2>Lab Objectives</h2>
+                <p>By completing this lab, you will:</p>
+                <ol>
+                    <li>Understand how to integrate WXCC widgets into a web application</li>
+                    <li>Learn how to authenticate agents using access tokens</li>
+                    <li>Implement various WXCC widgets step-by-step</li>
+                    <li>Test the integration with a live call scenario</li>
+                </ol>
+            </div>
+
+            <!-- Page 3: Prerequisites -->
+            <div class="lab-page" data-page="3">
+                <h2>Prerequisites</h2>
+                <p>Before starting this lab, ensure you have:</p>
+                <ul>
+                    <li>A computer with internet access</li>
+                    <li>A modern web browser (Chrome, Firefox, or Edge recommended)</li>
+                    <li>Basic familiarity with using a terminal/command prompt</li>
+                    <li>A phone to make test calls (or softphone application)</li>
+                </ul>
+            </div>
+
+            <!-- Page 4: Your Sandbox Credentials -->
+            <div class="lab-page" data-page="4">
+                <h2>Your Sandbox Credentials</h2>
+                <div class="warning">
+                    <strong>⚠️ IMPORTANT:</strong> Keep this information handy throughout the lab. These are your personal credentials.
+                </div>
+
+                <div class="credential-box">
+                    <h4>Agent Credentials</h4>
+                    <div class="credential-item" onclick="copyToClipboard('agentEmail', this)" title="Click to copy">
+                        <span class="credential-value">Email: <span id="agentEmail">Loading...</span></span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <div class="credential-item" onclick="copyToClipboard('agentPassword', this)" title="Click to copy">
+                        <span class="credential-value">Password: <span id="agentPassword">Loading...</span></span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="credential-box">
+                    <h4>Supervisor Credentials</h4>
+                    <div class="credential-item" onclick="copyToClipboard('supervisorEmail', this)" title="Click to copy">
+                        <span class="credential-value">Email: <span id="supervisorEmail">Loading...</span></span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <div class="credential-item" onclick="copyToClipboard('supervisorPassword', this)" title="Click to copy">
+                        <span class="credential-value">Password: <span id="supervisorPassword">Loading...</span></span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="credential-box">
+                    <h4>Test Phone Number</h4>
+                    <div class="credential-item" onclick="copyToClipboard('phoneNumber', this)" title="Click to copy">
+                        <span class="credential-value">Number to Call: <span id="phoneNumber">Loading...</span></span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <strong>Note:</strong> Write down these credentials now - you'll need them multiple times during the lab.
+                </div>
+            </div>
+
+            <!-- Page 5: Step 1 - Verify Node.js -->
+            <div class="lab-page" data-page="5">
+            <!-- Page 5: Step 1 - Verify Node.js -->
+            <div class="lab-page" data-page="5">
+                <h2>Step 1: Verify Node.js Installation</h2>
+                <p>Node.js is required to run the application. Let's verify it's installed on your machine.</p>
+
+                <h4>1. Open your terminal/command prompt:</h4>
+                <ul>
+                    <li><strong>Windows:</strong> Press <code>Win + R</code>, type <code>cmd</code>, and press Enter</li>
+                    <li><strong>Mac:</strong> Press <code>Cmd + Space</code>, type <code>terminal</code>, and press Enter</li>
+                    <li><strong>Linux:</strong> Press <code>Ctrl + Alt + T</code></li>
+                </ul>
+
+                <h4>2. Check Node.js version:</h4>
+                <div class="code-block-wrapper">
+                    <div class="code-block">node --version</div>
+                    <button class="code-copy-btn" onclick="copyCodeBlockFromBtn(event, this)">Copy</button>
+                </div>
+                <p><strong>Expected output:</strong> You should see something like <code>v18.x.x</code> or <code>v20.x.x</code></p>
+
+                <h4>3. Check npm version:</h4>
+                <div class="code-block-wrapper">
+                    <div class="code-block">npm --version</div>
+                    <button class="code-copy-btn" onclick="copyCodeBlockFromBtn(event, this)">Copy</button>
+                </div>
+                <p><strong>Expected output:</strong> You should see something like <code>9.x.x</code> or <code>10.x.x</code></p>
+
+                <div class="success">
+                    <strong><span class="checkmark">✅</span> If both commands show version numbers, you're ready to proceed!</strong>
+                </div>
+
+                <div class="warning">
+                    <strong><span class="xmark">❌</span> If you see "command not found" or similar error:</strong><br>
+                    - Node.js is not installed<br>
+                    - Contact your lab instructor for assistance
+                </div>
+            </div>
+
+            <!-- Page 6: Step 2 - Clone Repository -->
+            <div class="lab-page" data-page="6">
+            <!-- Page 6: Step 2 - Clone Repository -->
+            <div class="lab-page" data-page="6">
+                <h2>Step 2: Clone the GitHub Repository</h2>
+                <p>Now we'll download the lab code from GitHub.</p>
+
+                <h4>1. Navigate to your desired directory:</h4>
+                <p>Choose where you want to download the lab files. For example:</p>
+                <div class="code-block-wrapper">
+                    <div class="code-block"># Windows
+cd C:\Users\YourUsername\Desktop
+
+# Mac/Linux
+cd ~/Desktop</div>
+                    <button class="code-copy-btn" onclick="copyCodeBlockFromBtn(event, this)">Copy</button>
+                </div>
+
+                <h4>2. Clone the repository:</h4>
+                <div class="code-block-wrapper">
+                    <div class="code-block">git clone https://github.com/wxsd-sales/cti-wxcc-widgets.git</div>
+                    <button class="code-copy-btn" onclick="copyCodeBlockFromBtn(event, this)">Copy</button>
+                </div>
+                <div class="info">
+                    <strong>What's happening?</strong> This command downloads all the lab files from GitHub to your computer.
+                </div>
+
+                <h4>3. Navigate into the project folder:</h4>
+                <div class="code-block-wrapper">
+                    <div class="code-block">cd cti-wxcc-widgets</div>
+                    <button class="code-copy-btn" onclick="copyCodeBlockFromBtn(event, this)">Copy</button>
+                </div>
+
+                <h4>4. Verify the files are there:</h4>
+                <div class="code-block-wrapper">
+                    <div class="code-block"># Windows
+dir
+
+# Mac/Linux
+ls</div>
+                    <button class="code-copy-btn" onclick="copyCodeBlockFromBtn(event, this)">Copy</button>
+                </div>
+                <p><strong>Expected output:</strong> You should see files and folders including <code>package.json</code>, <code>src</code>, <code>public</code>, etc.</p>
+            </div>
+
+            <!-- Page 7: Step 3 - Install Dependencies -->
+            <div class="lab-page" data-page="7">
+            <!-- Page 7: Step 3 - Install Dependencies -->
+            <div class="lab-page" data-page="7">
+                <h2>Step 3: Install Project Dependencies</h2>
+                <p>The application needs various software packages to run. Let's install them.</p>
+
+                <h4>1. Run the install command:</h4>
+                <div class="code-block-wrapper">
+                    <div class="code-block">npm install</div>
+                    <button class="code-copy-btn" onclick="copyCodeBlockFromBtn(event, this)">Copy</button>
+                </div>
+                <div class="info">
+                    <strong>What's happening?</strong> This command reads the <code>package.json</code> file and installs all required packages.
+                </div>
+
+                <h4>2. Wait for installation to complete:</h4>
+                <ul>
+                    <li>This may take 2-5 minutes</li>
+                    <li>You'll see a progress bar and package names scrolling by</li>
+                    <li><strong>Don't close the terminal window!</strong></li>
+                </ul>
+
+                <h4>3. Installation is complete when:</h4>
+                <ul>
+                    <li>You see a message like <code>added XXX packages</code></li>
+                    <li>You return to the command prompt</li>
+                    <li>No error messages appear in red</li>
+                </ul>
+
+                <div class="warning">
+                    <strong>⚠️ If you see errors:</strong><br>
+                    - Try running <code>npm install</code> again<br>
+                    - If errors persist, contact your instructor
+                </div>
+            </div>
+
+            <!-- Page 8: Step 4 - Start Application -->
+            <div class="lab-page" data-page="8">
+            <p>Now let's run the application for the first time!</p>
+
+            <h4>1. Start the development server:</h4>
+            <div class="code-block-wrapper">
+                <div class="code-block">npm start</div>
+                <button class="code-copy-btn" onclick="copyCodeBlockFromBtn(event, this)">Copy</button>
+            </div>
+            <div class="info">
+                <strong>What's happening?</strong> This command starts a local web server to run your application.
+            </div>
+
+            <h4>2. Wait for the application to start:</h4>
+            <ul>
+                <li>You'll see compilation messages</li>
+                <li>The process may take 30-60 seconds</li>
+            </ul>
+
+            <h4>3. Application is ready when you see:</h4>
+            <div class="code-block-wrapper">
+                <div class="code-block">webpack compiled successfully</div>
+                <button class="code-copy-btn" onclick="copyCodeBlockFromBtn(event, this)">Copy</button>
+            </div>
+            <p>or</p>
+            <div class="code-block-wrapper">
+                <div class="code-block">Compiled successfully!</div>
+                <button class="code-copy-btn" onclick="copyCodeBlockFromBtn(event, this)">Copy</button>
+            </div>
+
+            <h4>4. Your browser should automatically open:</h4>
+            <ul>
+                <li>If it doesn't, manually open your browser and go to: <code>http://localhost:3000</code></li>
+            </ul>
+
+            <h4>5. You should see:</h4>
+            <ul>
+                <li>A basic web application interface</li>
+                <li>A login widget or placeholder area</li>
+                <li><strong>This is your starting point!</strong></li>
+            </ul>
+
+            <div class="note">
+                <strong>Tip:</strong> Keep this terminal window open. The application needs to keep running. If you close it, the app will stop.
+            </div>
+
+            <div class="separator"></div>
+
+            <h2>Step 5: Get Your Access Token (Agent Authentication)</h2>
+            <p>To use WXCC widgets, you need an access token that proves you're an authorized agent.</p>
+
+            <h4>5.1 Open Webex Developer Portal</h4>
+            <ol>
+                <li><strong>Open a new browser tab</strong></li>
+                <li><strong>Navigate to:</strong> <code>https://developer.webex.com</code></li>
+                <li><strong>Click "Log In"</strong> in the top-right corner</li>
+            </ol>
+
+            <h4>5.2 Login as Agent</h4>
+            <ol>
+                <li><strong>Enter your agent credentials:</strong>
+                    <ul>
+                        <li>Email: [Your agent email from credentials section]</li>
+                        <li>Password: [Your agent password from credentials section]</li>
+                    </ul>
+                </li>
+                <li><strong>Click "Sign In"</strong></li>
+                <li><strong>If prompted for two-factor authentication:</strong>
+                    <ul>
+                        <li>Follow the prompts to complete authentication</li>
+                        <li>Check your email or phone for verification codes</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h4>5.3 Get Your Access Token</h4>
+            <ol>
+                <li><strong>Once logged in, you'll be on the developer dashboard</strong></li>
+                <li><strong>Look for your avatar/profile icon</strong> in the top-right corner</li>
+                <li><strong>Click on it and find "Copy" next to your access token</strong> OR:
+                    <ul>
+                        <li>Scroll down the page to find "Your Personal Access Token"</li>
+                        <li>Look for a text field with a long string of characters</li>
+                    </ul>
+                </li>
+                <li><strong>Click "Copy"</strong> to copy your access token
+                    <ul>
+                        <li>The token looks something like: <code>YWFhYWFhYWFh...</code> (very long string)</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="warning">
+                <strong>⚠️ IMPORTANT:</strong><br>
+                - <strong>Do NOT share this token with anyone</strong><br>
+                - This token is valid for 12 hours<br>
+                - Keep this browser tab open - you'll need to copy this token
+            </div>
+
+            <div class="success">
+                <strong><span class="checkmark">✅</span> Token copied? Great! Let's move to the next step.</strong>
+            </div>
+
+            <div class="separator"></div>
+
+            <h2>Step 6: Implement the Login Widget</h2>
+            <p>Now we'll add the login functionality to your application.</p>
+
+            <h4>6.1 Paste Your Access Token</h4>
+            <ol>
+                <li><strong>Go back to your application tab</strong> (<code>http://localhost:3000</code>)</li>
+                <li><strong>You should see a login widget with an input field labeled "Access Token"</strong></li>
+                <li><strong>Paste your access token:</strong>
+                    <ul>
+                        <li>Click in the access token input field</li>
+                        <li>Press <code>Ctrl+V</code> (Windows/Linux) or <code>Cmd+V</code> (Mac)</li>
+                        <li>You should see the long token string appear</li>
+                    </ul>
+                </li>
+                <li><strong>Click the "Login" or "Connect" button</strong></li>
+            </ol>
+
+            <h4>6.2 Successful login indicators:</h4>
+            <ul>
+                <li>You might see a success message</li>
+                <li>The UI might change to show agent status</li>
+                <li>Additional widgets or sections might appear</li>
+            </ul>
+
+            <div class="warning">
+                <strong><span class="xmark">❌</span> If login fails:</strong><br>
+                - Verify you copied the complete token (it's very long)<br>
+                - Make sure there are no extra spaces before/after the token<br>
+                - Verify you're logged in as the agent (not supervisor) on developer.webex.com<br>
+                - Try copying the token again
+            </div>
+
+            <div class="separator"></div>
+
+            <h2>Step 7: Implement Additional Widgets Step-by-Step</h2>
+            <p>Now comes the exciting part! You'll add more functionality by implementing additional widgets one at a time.</p>
+
+            <h4>7.1 Understanding the Process</h4>
+            <p>For each widget, you'll:</p>
+            <ol>
+                <li>Look at the provided code in the GitHub repository</li>
+                <li>Copy the code for a specific widget</li>
+                <li>Paste it into the appropriate file in your project</li>
+                <li>Save the file</li>
+                <li>The application will automatically reload with the new widget</li>
+            </ol>
+
+            <h4>7.2 Open the Lab Instructions</h4>
+            <ol>
+                <li><strong>In your browser, open a new tab</strong></li>
+                <li><strong>Go to the GitHub repository:</strong><br>
+                    <code>https://github.com/wxsd-sales/cti-wxcc-widgets</code>
+                </li>
+                <li><strong>Look for a file called <code>LAB_INSTRUCTIONS.md</code> or similar</strong>
+                    <ul>
+                        <li>This file contains the step-by-step widget implementation instructions</li>
+                        <li>It tells you exactly which code to copy and where to paste it</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h4>7.3 Open Your Code Editor</h4>
+            <ol>
+                <li><strong>Open the project folder in your preferred code editor:</strong>
+                    <ul>
+                        <li><strong>Visual Studio Code (recommended):</strong>
+                            <ul>
+                                <li>Open VS Code</li>
+                                <li>File → Open Folder → Select <code>cti-wxcc-widgets</code> folder</li>
+                            </ul>
+                        </li>
+                        <li><strong>Other editors:</strong> Open the <code>cti-wxcc-widgets</code> folder however your editor requires</li>
+                    </ul>
+                </li>
+                <li><strong>You should see the project structure:</strong>
+                    <div class="code-block-wrapper">
+                        <div class="code-block">cti-wxcc-widgets/
+├── src/
+│   ├── components/
+│   ├── App.js
+│   └── ...
+├── public/
+├── package.json
+└── ...</div>
+                        <button class="code-copy-btn" onclick="copyCodeBlockFromBtn(event, this)">Copy</button>
+                    </div>
+                </li>
+            </ol>
+
+            <h4>7.4 Implement Widget #1: Agent Desktop Widget</h4>
+            <p><strong>Follow the instructions from the GitHub LAB_INSTRUCTIONS.md file for each widget. Here's the general process:</strong></p>
+
+            <ol>
+                <li><strong>Find the widget code in the repository</strong>
+                    <ul><li>Example: Look for <code>Step 1: Agent Desktop Widget</code> in the instructions</li></ul>
+                </li>
+                <li><strong>Copy the provided code snippet</strong></li>
+                <li><strong>Open the specified file</strong> (e.g., <code>src/App.js</code> or <code>src/components/AgentDesktop.js</code>)</li>
+                <li><strong>Find the section to replace</strong> (usually marked with comments like <code>// TODO: Step 1</code>)</li>
+                <li><strong>Paste the code</strong> in the correct location</li>
+                <li><strong>Save the file</strong> (<code>Ctrl+S</code> or <code>Cmd+S</code>)</li>
+                <li><strong>Check your application:</strong>
+                    <ul>
+                        <li>Go back to your browser tab with <code>http://localhost:3000</code></li>
+                        <li>The page should automatically reload</li>
+                        <li>You should see the new widget appear</li>
+                    </ul>
+                </li>
+                <li><strong>Verify the widget works:</strong>
+                    <ul>
+                        <li>Test any buttons or functionality</li>
+                        <li>Make sure there are no error messages in the browser console</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="note">
+                <strong>Browser Console:</strong><br>
+                - Press <code>F12</code> to open Developer Tools<br>
+                - Click "Console" tab<br>
+                - This shows errors if something goes wrong
+            </div>
+
+            <h4>7.5 Implement Remaining Widgets</h4>
+            <p><strong>Repeat the process above for each widget in order:</strong></p>
+
+            <p>Typical widgets you'll implement (check your specific LAB_INSTRUCTIONS.md):</p>
+            <ol>
+                <li><span class="checkmark">✅</span> Login Widget (already done in Step 6)</li>
+                <li>Agent Desktop Widget</li>
+                <li>Call Controls Widget</li>
+                <li>Task List Widget</li>
+                <li>Agent Status Widget</li>
+                <li>Screen Pop Widget</li>
+            </ol>
+
+            <div class="warning">
+                <strong>⚠️ Important:</strong><br>
+                - <strong>Implement widgets in the order specified</strong> in the lab instructions<br>
+                - <strong>Don't skip steps</strong> - later widgets might depend on earlier ones<br>
+                - <strong>Test each widget</strong> before moving to the next<br>
+                - <strong>Save all files</strong> as you go
+            </div>
+
+            <div class="success">
+                <strong>After implementing all widgets, you should see:</strong><br>
+                - A complete agent interface<br>
+                - Multiple widget panels<br>
+                - Agent status indicators<br>
+                - Call control buttons<br>
+                - Task management area
+            </div>
+
+            <div class="separator"></div>
+
+            <h2>Step 8: Prepare for Call Testing</h2>
+            <p>Now let's set up to receive and handle a test call!</p>
+
+            <h4>8.1 Verify Agent Status</h4>
+            <ol>
+                <li><strong>In your custom application</strong>, check:
+                    <ul>
+                        <li>Your agent name/email is displayed</li>
+                        <li>Agent status shows as "Available" or similar</li>
+                        <li>No error messages are visible</li>
+                        <li>All widgets are loaded and visible</li>
+                    </ul>
+                </li>
+                <li><strong>If agent status is not "Available":</strong>
+                    <ul>
+                        <li>Look for a status selector widget</li>
+                        <li>Change status to "Available" or "Ready"</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h4>8.2 Open Webex App (Supervisor)</h4>
+            <ol>
+                <li><strong>Download Webex App</strong> (if not already installed):
+                    <ul>
+                        <li>Go to: <code>https://www.webex.com/downloads.html</code></li>
+                        <li>Download Webex for your operating system</li>
+                        <li>Install the application</li>
+                        <li><strong>OR</strong> use the web version at <code>https://web.webex.com</code></li>
+                    </ul>
+                </li>
+                <li><strong>Open Webex App</strong></li>
+                <li><strong>Login with SUPERVISOR credentials:</strong>
+                    <ul>
+                        <li>Email: [Your supervisor email from credentials section]</li>
+                        <li>Password: [Your supervisor password from credentials section]</li>
+                    </ul>
+                </li>
+                <li><strong>Wait for Webex to fully load:</strong>
+                    <ul>
+                        <li>You should see the main Webex interface</li>
+                        <li>Calling features should be available</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="info">
+                <strong>Why supervisor?</strong> The supervisor account is used to place test calls into the contact center queue that your agent will receive.
+            </div>
+
+            <div class="separator"></div>
+
+            <h2>Step 9: Make a Test Call</h2>
+            <p>This is the moment of truth! Let's test the complete integration.</p>
+
+            <h4>9.1 Supervisor Places the Call</h4>
+            <ol>
+                <li><strong>In the Webex App (logged in as supervisor):</strong></li>
+                <li><strong>Find the calling/dial pad feature:</strong>
+                    <ul>
+                        <li>Look for a phone icon or "Call" button</li>
+                        <li>Click to open the dial pad</li>
+                    </ul>
+                </li>
+                <li><strong>Dial the test number:</strong>
+                    <ul>
+                        <li>Enter the number provided by your instructor</li>
+                        <li><strong>Number:</strong> [From your credentials section]</li>
+                    </ul>
+                </li>
+                <li><strong>Click "Call" or press the call button</strong></li>
+                <li><strong>Wait for the call to connect:</strong>
+                    <ul>
+                        <li>You should hear ringing or a queue message</li>
+                        <li>The call is being routed to your agent</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h4>9.2 Agent Receives the Call</h4>
+            <ol>
+                <li><strong>Switch to your custom application</strong> (<code>http://localhost:3000</code>)</li>
+                <li><strong>Watch for incoming call notification:</strong>
+                    <ul>
+                        <li>You should see a call notification appear</li>
+                        <li>The Task List widget should show a new task</li>
+                        <li>You might hear a ringing sound (if audio is implemented)</li>
+                        <li>The caller's information should display</li>
+                    </ul>
+                </li>
+                <li><strong>Call information you should see:</strong>
+                    <ul>
+                        <li>Caller ID or phone number</li>
+                        <li>Call queue information</li>
+                        <li>"Answer" button</li>
+                        <li>"Decline" or "Reject" button</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h4>9.3 Answer the Call</h4>
+            <ol>
+                <li><strong>Click the "Answer" button</strong> in your custom application</li>
+                <li><strong>Call should connect:</strong>
+                    <ul>
+                        <li>Call status changes to "Connected" or "Active"</li>
+                        <li>Call timer starts counting</li>
+                        <li>Call control buttons become active (Hold, Mute, Transfer, etc.)</li>
+                    </ul>
+                </li>
+                <li><strong>Test the audio:</strong>
+                    <ul>
+                        <li>Speak into your computer microphone</li>
+                        <li>Listen through your computer speakers/headphones</li>
+                        <li>The supervisor (in Webex App) should hear you</li>
+                        <li>You should hear the supervisor</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="note">
+                <strong>Audio Issues?</strong><br>
+                - Check your browser permissions for microphone/speaker access<br>
+                - Check system volume settings<br>
+                - Try refreshing the page and answering again
+            </div>
+
+            <h4>9.4 Test Call Controls</h4>
+            <p>While the call is active, test the various call controls:</p>
+
+            <ol>
+                <li><strong>Mute/Unmute:</strong>
+                    <ul>
+                        <li>Click "Mute" button</li>
+                        <li>Verify the supervisor can't hear you</li>
+                        <li>Click "Unmute"</li>
+                        <li>Verify audio returns</li>
+                    </ul>
+                </li>
+                <li><strong>Hold/Resume:</strong>
+                    <ul>
+                        <li>Click "Hold" button</li>
+                        <li>Verify the supervisor hears hold music or silence</li>
+                        <li>Click "Resume"</li>
+                        <li>Verify audio returns</li>
+                    </ul>
+                </li>
+                <li><strong>End Call:</strong>
+                    <ul>
+                        <li>Click "End Call" or "Hang Up" button</li>
+                        <li>Call should disconnect</li>
+                        <li>Call status should update</li>
+                        <li>Task should move to completed or wrap-up state</li>
+                    </ul>
+                </li>
+                <li><strong>In the Webex App:</strong>
+                    <ul>
+                        <li>The supervisor should also see the call end</li>
+                        <li>Call should disconnect cleanly</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="separator"></div>
+
+            <h2>Step 10: Verify Complete Integration</h2>
+            <p>Let's do a final check to ensure everything is working correctly.</p>
+
+            <h4>10.1 Make Another Test Call</h4>
+            <ol>
+                <li><strong>Set agent status back to "Available"</strong></li>
+                <li><strong>Have the supervisor place another call</strong></li>
+                <li><strong>This time, observe the complete flow:</strong>
+                    <ul>
+                        <li>Call arrives in the task list</li>
+                        <li>You can see caller information</li>
+                        <li>You answer the call</li>
+                        <li>All widgets update appropriately</li>
+                        <li>Call controls work</li>
+                        <li>You can end the call successfully</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h4>10.2 Check All Widgets</h4>
+            <p>Verify each widget is functioning:</p>
+            <ul>
+                <li><span class="checkmark">✅</span> <strong>Login Widget:</strong> Shows you're authenticated</li>
+                <li><span class="checkmark">✅</span> <strong>Agent Desktop:</strong> Displays agent information</li>
+                <li><span class="checkmark">✅</span> <strong>Call Controls:</strong> All buttons work (answer, hold, mute, end)</li>
+                <li><span class="checkmark">✅</span> <strong>Task List:</strong> Shows active and completed tasks</li>
+                <li><span class="checkmark">✅</span> <strong>Agent Status:</strong> Displays current status, allows changes</li>
+                <li><span class="checkmark">✅</span> <strong>Screen Pop:</strong> Shows caller information (if implemented)</li>
+            </ul>
+
+            <h4>10.3 Test Error Scenarios</h4>
+            <ol>
+                <li><strong>Try declining a call:</strong>
+                    <ul>
+                        <li>Have supervisor place a call</li>
+                        <li>Click "Decline" instead of "Answer"</li>
+                        <li>Verify the call is properly rejected</li>
+                    </ul>
+                </li>
+                <li><strong>Change agent status to "Offline":</strong>
+                    <ul>
+                        <li>New calls shouldn't arrive</li>
+                        <li>Have supervisor call again</li>
+                        <li>Call should go to another agent or queue</li>
+                    </ul>
+                </li>
+                <li><strong>Change back to "Available"</strong></li>
+            </ol>
+
+            <div class="separator"></div>
+
+            <h2>Congratulations!</h2>
+            <p>You have successfully completed the Webex Contact Center Widget Integration Lab!</p>
+
+            <h3>What You Accomplished:</h3>
+            <ul>
+                <li><span class="checkmark">✅</span> Cloned and set up a WXCC integration project</li>
+                <li><span class="checkmark">✅</span> Authenticated as a Webex Contact Center agent</li>
+                <li><span class="checkmark">✅</span> Implemented multiple WXCC widgets step-by-step</li>
+                <li><span class="checkmark">✅</span> Received and handled live calls in a custom application</li>
+                <li><span class="checkmark">✅</span> Tested call controls and agent features</li>
+            </ul>
+
+            <h3>Key Takeaways:</h3>
+            <ol>
+                <li><strong>WXCC widgets</strong> can be embedded into any web application</li>
+                <li><strong>Access tokens</strong> are used for authentication</li>
+                <li><strong>Widgets work together</strong> to create a complete contact center experience</li>
+                <li><strong>Custom interfaces</strong> can be built while leveraging Webex Contact Center backend</li>
+            </ol>
+
+            <div class="separator"></div>
+
+            <h2>Troubleshooting Guide</h2>
+
+            <h3>Common Issues and Solutions</h3>
+
+            <div class="warning">
+                <h4>Issue: "npm: command not found"</h4>
+                <strong>Solution:</strong><br>
+                - Node.js is not installed or not in PATH<br>
+                - Contact your instructor for assistance
+            </div>
+
+            <div class="warning">
+                <h4>Issue: Application won't start</h4>
+                <strong>Solution:</strong><br>
+                - Make sure you ran <code>npm install</code> first<br>
+                - Check for error messages in the terminal<br>
+                - Try: <code>rm -rf node_modules && npm install</code> (deletes and reinstalls packages)
+            </div>
+
+            <div class="warning">
+                <h4>Issue: Access token not working</h4>
+                <strong>Solution:</strong><br>
+                - Make sure you copied the complete token<br>
+                - Remove any extra spaces before/after the token<br>
+                - Verify you're logged in as the agent (not supervisor)<br>
+                - Token expires after 12 hours - get a new one if needed
+            </div>
+
+            <div class="warning">
+                <h4>Issue: Widgets not appearing</h4>
+                <strong>Solution:</strong><br>
+                - Check browser console (F12) for errors<br>
+                - Verify you saved the file after pasting code<br>
+                - Make sure you pasted code in the correct location<br>
+                - Try refreshing the browser
+            </div>
+
+            <div class="warning">
+                <h4>Issue: Call not arriving</h4>
+                <strong>Solution:</strong><br>
+                - Verify agent status is "Available"<br>
+                - Check that you're dialing the correct test number<br>
+                - Make sure the application is still running (check terminal)<br>
+                - Verify you're logged in as agent in the custom app
+            </div>
+
+            <div class="warning">
+                <h4>Issue: No audio during call</h4>
+                <strong>Solution:</strong><br>
+                - Check browser permissions for microphone/speaker<br>
+                - Look for a browser permission popup and click "Allow"<br>
+                - Check system volume settings<br>
+                - Try using headphones<br>
+                - Refresh and try again
+            </div>
+
+            <div class="warning">
+                <h4>Issue: Widgets crash after implementing code</h4>
+                <strong>Solution:</strong><br>
+                - Check for syntax errors in the code you pasted<br>
+                - Compare your code with the GitHub repository<br>
+                - Look at the browser console for specific error messages<br>
+                - Undo your last change and try again
+            </div>
+
+            <div class="separator"></div>
+
+            <h2>Additional Resources</h2>
+            <ul>
+                <li><strong>Webex Contact Center Documentation:</strong> <a href="https://developer.webex.com/docs/contact-center" target="_blank">https://developer.webex.com/docs/contact-center</a></li>
+                <li><strong>WXCC Widget Reference:</strong> <a href="https://developer.webex-cx.com/documentation/" target="_blank">https://developer.webex-cx.com/documentation/</a></li>
+                <li><strong>GitHub Repository:</strong> <a href="https://github.com/wxsd-sales/cti-wxcc-widgets" target="_blank">https://github.com/wxsd-sales/cti-wxcc-widgets</a></li>
+                <li><strong>Webex Developer Portal:</strong> <a href="https://developer.webex.com" target="_blank">https://developer.webex.com</a></li>
+            </ul>
+
+            <div class="separator"></div>
+
+            <h2>Feedback</h2>
+            <p>Did you enjoy this lab? Have suggestions for improvement?</p>
+            <p>Contact: [Your instructor's email or feedback form]</p>
+
+            <div class="separator"></div>
+
+            <h2>Cleanup (After Lab)</h2>
+            <p>When you're done with the lab:</p>
+
+            <ol>
+                <li><strong>Stop the application:</strong>
+                    <ul>
+                        <li>Go to the terminal where <code>npm start</code> is running</li>
+                        <li>Press <code>Ctrl+C</code> to stop the server</li>
+                    </ul>
+                </li>
+                <li><strong>Close applications:</strong>
+                    <ul>
+                        <li>Close the Webex App</li>
+                        <li>Close browser tabs</li>
+                    </ul>
+                </li>
+                <li><strong>Optional - Delete project files:</strong>
+                    <div class="code-block-wrapper">
+                        <div class="code-block">cd ..
+rm -rf cti-wxcc-widgets</div>
+                        <button class="code-copy-btn" onclick="copyCodeBlockFromBtn(event, this)">Copy</button>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="separator"></div>
+
+            <div class="info" style="text-align: center; font-size: 0.95rem;">
+                <strong>Lab Version:</strong> 1.0<br>
+                <strong>Last Updated:</strong> February 2026<br>
+                <strong>Estimated Time:</strong> 60 minutes
+            </div>
+
+            <!-- LAB GUIDE CONTENT ENDS HERE -->
+        </div>
+    </div>
+
+    <script>
+        // User credentials data
+        let usersData = {};
+
+        // Load user credentials from JSON file
+        async function loadUserCredentials() {
+            try {
+                const response = await fetch('users-credentials.json');
+                if (!response.ok) {
+                    throw new Error('Failed to load credentials');
+                }
+                usersData = await response.json();
+                console.log('Credentials loaded successfully');
+            } catch (error) {
+                console.error('Error loading credentials:', error);
+                alert('Error loading user credentials. Please check that users-credentials.json exists.');
+            }
+        }
+
+        // Display credentials for a specific user
+        function displayUserCredentials(username) {
+            const userData = usersData[username];
+            
+            if (!userData) {
+                // User not found, show error
+                document.getElementById('agentEmail').textContent = 'User not found';
+                document.getElementById('agentPassword').textContent = 'N/A';
+                document.getElementById('supervisorEmail').textContent = 'User not found';
+                document.getElementById('supervisorPassword').textContent = 'N/A';
+                document.getElementById('phoneNumber').textContent = 'N/A';
+                
+                alert(`Username "${username}" not found. Please use user1 through user16.`);
+                return;
+            }
+
+            // Display credentials
+            document.getElementById('agentEmail').textContent = userData.agentEmail;
+            document.getElementById('agentPassword').textContent = userData.agentPassword;
+            document.getElementById('supervisorEmail').textContent = userData.supervisorEmail;
+            document.getElementById('supervisorPassword').textContent = userData.supervisorPassword;
+            document.getElementById('phoneNumber').textContent = userData.phoneNumber;
+        }
+
+        // Copy to clipboard functionality for credentials
+        function copyToClipboard(elementId, buttonElement) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            
+            if (text === 'Loading...' || text === 'User not found' || text === 'N/A') {
+                return;
+            }
+
+            navigator.clipboard.writeText(text).then(() => {
+                // Visual feedback
+                const copyBtn = buttonElement.querySelector('.copy-btn');
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = 'Copied!';
+                copyBtn.classList.add('copied');
+                
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy to clipboard');
+            });
+        }
+
+        // Copy code block functionality from button
+        function copyCodeBlockFromBtn(event, button) {
+            event.stopPropagation(); // Prevent any parent handlers
+            
+            const wrapper = button.parentElement;
+            const codeBlock = wrapper.querySelector('.code-block');
+            const text = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                // Visual feedback
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy to clipboard');
+            });
+        }
+
+        // Wait for DOM to be ready
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('Page loaded, initializing...');
+            
+            // Load credentials data
+            await loadUserCredentials();
+            
+            const loginForm = document.getElementById('loginForm');
+            const loginContainer = document.getElementById('loginContainer');
+            const labGuideContainer = document.getElementById('labGuideContainer');
+            const usernameInput = document.getElementById('username');
+            const displayUsername = document.getElementById('displayUsername');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            console.log('Elements:', {
+                loginForm: !!loginForm,
+                loginContainer: !!loginContainer,
+                labGuideContainer: !!labGuideContainer,
+                usernameInput: !!usernameInput,
+                displayUsername: !!displayUsername,
+                logoutBtn: !!logoutBtn
+            });
+
+            // Handle form submission
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    console.log('Form submitted!');
+                    e.preventDefault();
+                    
+                    const username = usernameInput.value.trim();
+                    console.log('Username:', username);
+                    
+                    if (username) {
+                        // Store in session
+                        sessionStorage.setItem('username', username);
+                        
+                        // Update display
+                        displayUsername.textContent = username;
+                        
+                        // Display user credentials
+                        displayUserCredentials(username);
+                        
+                        // Switch views
+                        loginContainer.classList.add('hidden');
+                        labGuideContainer.classList.remove('hidden');
+                        
+                        console.log('Switched to lab guide');
+                    }
+                });
+            }
+
+            // Handle logout
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function() {
+                    console.log('Logout clicked');
+                    sessionStorage.removeItem('username');
+                    usernameInput.value = '';
+                    labGuideContainer.classList.add('hidden');
+                    loginContainer.classList.remove('hidden');
+                });
+            }
+
+            // Check for existing session
+            const storedUsername = sessionStorage.getItem('username');
+            if (storedUsername) {
+                console.log('Found existing session');
+                displayUsername.textContent = storedUsername;
+                displayUserCredentials(storedUsername);
+                loginContainer.classList.add('hidden');
+                labGuideContainer.classList.remove('hidden');
+            }
+
+            // Focus input
+            if (usernameInput) {
+                usernameInput.focus();
+            }
+        });
+    </script>
+</body>
+</html>
