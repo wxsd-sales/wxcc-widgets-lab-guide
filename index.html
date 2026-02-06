@@ -394,7 +394,8 @@
             overflow-x: auto;
             font-size: 0.9rem;
             line-height: 1.6;
-            color: #1d1d1d;
+            color: #000000 !important;
+            font-weight: 600;
             position: relative;
             padding-right: 120px;
         }
@@ -412,7 +413,34 @@
             display: block;
             font-family: inherit;
             font-size: inherit;
-            color: inherit;
+            color: #000000 !important;
+            font-weight: 600;
+        }
+
+        /* Make all text in code blocks black and bold */
+        .code-block pre,
+        .code-block code {
+            color: #000000 !important;
+            font-weight: 600;
+        }
+
+        /* Specifically target code tags inside code blocks */
+        .code-block > code {
+            color: #000000 !important;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Override any red coloring that might appear - make it bold black instead */
+        .code-block * {
+            color: #000000 !important;
+            font-weight: 600;
+        }
+
+        /* Ensure button text stays normal (not affected by the * selector) */
+        .code-block .code-copy-btn {
+            font-weight: 600;
+            color: white !important;
         }
 
         .code-copy-btn {
@@ -481,10 +509,21 @@
             padding: 16px 20px;
             border-radius: 4px;
             margin: 20px 0;
+            color: #1d1d1d;
+            font-weight: normal;
         }
 
         .warning strong {
-            color: #cf1322;
+            color: #1d1d1d;
+            font-weight: 600;
+        }
+
+        .warning p,
+        .warning ul,
+        .warning ol,
+        .warning li {
+            color: #1d1d1d;
+            font-weight: normal;
         }
 
         .success {
@@ -766,14 +805,14 @@
                 </div>
 
                 <div class="credential-box">
-                    <h4>Supervisor Credentials</h4>
+                    <h4>User2 Credentials</h4>
                     <div class="credential-item">
-                        <span class="credential-value">Email: <span id="supervisorEmail">Loading...</span></span>
-                        <button class="copy-credential-btn" onclick="copyCredential('supervisorEmail', this)">Copy</button>
+                        <span class="credential-value">Email: <span id="userEmail">Loading...</span></span>
+                        <button class="copy-credential-btn" onclick="copyCredential('userEmail', this)">Copy</button>
                     </div>
                     <div class="credential-item">
-                        <span class="credential-value">Password: <span id="supervisorPassword">Loading...</span></span>
-                        <button class="copy-credential-btn" onclick="copyCredential('supervisorPassword', this)">Copy</button>
+                        <span class="credential-value">Password: <span id="userPassword">Loading...</span></span>
+                        <button class="copy-credential-btn" onclick="copyCredential('userPassword', this)">Copy</button>
                     </div>
                 </div>
 
@@ -793,18 +832,18 @@
 
                 <h4>1. Open your terminal/command prompt:</h4>
                 <ul>
-                    <li><strong>Windows:</strong> Press <code>Win + R</code>, type <code>cmd</code>, and press Enter</li>
-                    <li><strong>Mac:</strong> Press <code>Cmd + Space</code>, type <code>terminal</code>, and press Enter</li>
-                    <li><strong>Linux:</strong> Press <code>Ctrl + Alt + T</code></li>
+                    <li><strong>Windows:</strong> Press <strong><code>Win + R</code></strong>, type <strong><code>cmd</code></strong>, and press Enter</li>
+                    <li><strong>Mac:</strong> Press <strong><code>Cmd + Space</code></strong>, type <strong><code>terminal</code></strong>, and press Enter</li>
+                    <li><strong>Linux:</strong> Press <strong><code>Ctrl + Alt + T</code></strong></li>
                 </ul>
 
                 <h4>2. Check Node.js version:</h4>
                 <div class="code-block">node --version<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
-                <p><strong>Expected output:</strong> You should see something like <code>v22.x.x</code></p>
+                <p><strong>Expected output:</strong> You should see something like <strong><code>v22.x.x</code></strong></p>
 
                 <h4>3. Check npm version:</h4>
                 <div class="code-block">npm --version<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
-                <p><strong>Expected output:</strong> You should see something like <code>9.x.x</code> or <code>10.x.x</code></p>
+                <p><strong>Expected output:</strong> You should see something like <strong><code>9.x.x</code></strong> or <strong><code>10.x.x</code></strong></p>
 
                 <div class="success">
                     <strong><span class="checkmark">✅</span> If both commands show version numbers, you're ready to proceed!</strong>
@@ -837,8 +876,8 @@
 
                 <h4>4. Verify the files are there:</h4>
                 <div class="code-block">ls<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
-                <p><strong>Expected output:</strong> You should see files and folders including <code>package.json</code>, <code>src</code>, <code>public</code>, etc.</p>
-                <img src="assets/image1.jpg" alt="Image 1" width="80%" height="80%" class="lab-image">
+                <p><strong>Expected output:</strong> You should see files and folders including <strong><code>package.json</code></strong>, <strong><code>src</code></strong>, <strong><code>public</code></strong>, etc.</p>
+                <img src="assets/image1.png" alt="Image 1" width="80%" height="80%" class="lab-image">
             </div>
 
             <!-- Page 5: Step 3 - Install Dependencies -->
@@ -849,7 +888,7 @@
                 <h4>1. Run the install command:</h4>
                 <div class="code-block">npm install<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
                 <div class="info">
-                    <strong>What's happening?</strong> This command reads the <code>package.json</code> file and installs all required packages.
+                    <strong>What's happening?</strong> This command reads the <strong><code>package.json</code></strong> file and installs all required packages.
                 </div>
 
                 <h4>2. Wait for installation to complete:</h4>
@@ -861,14 +900,14 @@
 
                 <h4>3. Installation is complete when:</h4>
                 <ul>
-                    <li>You see a message like <code>added XXX packages</code></li>
+                    <li>You see a message like <strong><code>added XXX packages</code></strong></li>
                     <li>You return to the command prompt</li>
                     <li>No error messages appear in red</li>
                 </ul>
-                <img src="assets/image2.jpg" alt="Image 2" width="80%" height="80%" class="lab-image">
+                <img src="assets/image2.png" alt="Image 2" width="80%" height="80%" class="lab-image">
                 <div class="warning">
                     <strong>⚠️ If you see errors:</strong><br>
-                    - Try running <code>npm install</code> again<br>
+                    - Try running <strong><code>npm install</code></strong> again<br>
                     - If errors persist, contact your instructor
                 </div>
             </div>
@@ -891,11 +930,11 @@
                 </ul>
 
                 <h4>3. Application is ready when you see:</h4>
-                <img src="assets/image3.jpg" alt="Image 3" width="80%" height="80%" class="lab-image">
+                <img src="assets/image3.png" alt="Image 3" width="80%" height="80%" class="lab-image">
 
                 <h4>4. Your browser should automatically open:</h4>
                 <ul>
-                    <li>If it doesn't, manually open your browser and go to: <code>http://localhost:5173</code></li>
+                    <li>If it doesn't, manually open your browser and go to: <strong><code>http://localhost:5173</code></strong></li>
                 </ul>
 
                 <h4>5. You should see:</h4>
@@ -919,7 +958,7 @@
                 <h4>5.1 Open Webex Developer Portal</h4>
                 <ol>
                     <li><strong>Open a new browser tab</strong></li>
-                    <li><strong>Navigate to:</strong> <code>https://developer.webex.com</code></li>
+                    <li><strong>Navigate to:</strong> <strong><code>https://developer.webex.com</code></strong></li>
                     <li><strong>Click "Log In"</strong> in the top-right corner</li>
                 </ol>
 
@@ -946,7 +985,7 @@
                     </li>
                     <li><strong>Click "Copy"</strong> to copy your access token
                         <ul>
-                            <li>The token looks something like: <code>YWFhYWFhYWFh...</code> (very long string)</li>
+                            <li>The token looks something like: <strong><code>YWFhYWFhYWFh...</code></strong> (very long string)</li>
                         </ul>
                     </li>
                 </ol>
@@ -970,13 +1009,13 @@
 
                 <h4>6.1 Paste Your Access Token</h4>
                 <ol>
-                    <li><strong>Go back to your application tab</strong> (<code>http://localhost:5173</code>)</li>
+                    <li><strong>Go back to your application tab</strong> (<strong><code>http://localhost:5173</code></strong>)</li>
                     <li><strong>You should see a login widget with an input field labeled "Access Token"</strong></li>
                     <li><strong>Paste your access token:</strong>
                         <ul>
 
                             <li>Click in the access token input field</li>
-                            <li>Press <code>Ctrl+V</code> (Windows/Linux) or <code>Cmd+V</code> (Mac)</li>
+                            <li>Press <strong><code>Ctrl+V</code></strong> (Windows/Linux) or <strong><code>Cmd+V</code></strong> (Mac)</li>
                             <li>You should see the long token string appear</li>
                         </ul>
                     </li>
@@ -992,7 +1031,7 @@
                     <strong><span class="xmark">❌</span> If login fails:</strong><br>
                     - Verify you copied the complete token (it's very long)<br>
                     - Make sure there are no extra spaces before/after the token<br>
-                    - Verify you're logged in as the agent (not supervisor) on developer.webex.com<br>
+                    - Verify you're logged in as the agent (not user2) on developer.webex.com<br>
                     - Try copying the token again
                 </div>
             </div>
@@ -1006,15 +1045,15 @@
                 <ol>
                     <li><strong>Open Visual Studio Code:</strong>
                         <ul>
-                            <li><strong>Mac:</strong> Press <code>Cmd + Space</code>, type "Visual Studio Code" or "Code", then press Enter</li>
-                            <li><strong>Windows:</strong> Press <code>Win</code> key, type "Visual Studio Code", then press Enter</li>
-                            <li><strong>Linux:</strong> Open from your applications menu or type <code>code</code> in terminal</li>
+                            <li><strong>Mac:</strong> Press <strong><code>Cmd + Space</code></strong>, type "Visual Studio Code" or "Code", then press Enter</li>
+                            <li><strong>Windows:</strong> Press <strong><code>Win</code></strong> key, type "Visual Studio Code", then press Enter</li>
+                            <li><strong>Linux:</strong> Open from your applications menu or type <strong><code>code</code></strong> in terminal</li>
                         </ul>
                     </li>
                     <li><strong>Open the project folder:</strong>
                         <ul>
                             <li>In VS Code: <strong>File → Open Folder</strong></li>
-                            <li>Navigate to and select the <code>cti-wxcc-widgets</code> folder (the one you cloned in Step 2)</li>
+                            <li>Navigate to and select the <strong><code>cti-wxcc-widgets</code></strong> folder (the one you cloned in Step 2)</li>
                             <li>Click <strong>"Select Folder"</strong></li>
                         </ul>
                     </li>
@@ -1027,21 +1066,21 @@
                 <p>Follow these steps to add the Station Login widget:</p>
 
                 <ol>
-                    <li><strong>Open the file <code>src/App.tsx</code></strong>
+                    <li><strong>Open the file </strong><strong><code>src/App.tsx</code></strong>
                         <ul>
-                            <li>In VS Code, click on <code>src</code> folder in the left sidebar</li>
-                            <li>Click on <code>App.tsx</code> to open it</li>
+                            <li>In VS Code, click on <strong><code>src</code></strong> folder in the left sidebar</li>
+                            <li>Click on <strong><code>App.tsx</code></strong> to open it</li>
                         </ul>
                     </li>
                     <li><strong>Find the TODO comment:</strong>
                         <ul>
-                            <li>Press <code>Ctrl+F</code> (Windows/Linux) or <code>Cmd+F</code> (Mac) to open search</li>
+                            <li>Press <strong><code>Ctrl+F</code></strong> (Windows/Linux) or <strong><code>Cmd+F</code></strong> (Mac) to open search</li>
                             <li>Search for: 
-                                <div class="code-block"><code>TODO: STEP 1 - STATION LOGIN WIDGET</code><button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div></li>
+                                <div class="code-block"><strong><code>TODO: STEP 1 - STATION LOGIN WIDGET</code></strong><button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div></li>
                         </ul>
                     </li>
                     <li><strong>Replace the TODO comment with the Station Login widget code:</strong>
-                        <div class="code-block"><pre><code>{/* TODO: STEP 1 - STATION LOGIN WIDGET */}
+                        <div class="code-block"><pre><strong><code>{/* TODO: STEP 1 - STATION LOGIN WIDGET */}
 &lt;StationLogin
   profileMode={false}
   onLogin={() =&gt; {
@@ -1052,11 +1091,11 @@
     setIsLoggedIn(false);
     console.log('Agent logged out');
   }}
-/&gt;</code></pre><button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
+/&gt;</code></strong></pre><button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
                     </li>
                     <li><strong>Save the file:</strong>
                         <ul>
-                            <li>Press <code>Ctrl+S</code> (Windows/Linux) or <code>Cmd+S</code> (Mac)</li>
+                            <li>Press <strong><code>Ctrl+V</code></strong> (Windows/Linux) or <strong><code>Cmd+V</code></strong> (Mac)</li>
                             <li>Or click <strong>File → Save</strong></li>
                         </ul>
                     </li>
@@ -1064,7 +1103,7 @@
 
                 <h4>7.3 Verify the Implementation</h4>
                 <ol>
-                    <li><strong>Go back to your browser</strong> with the application running (<code>http://localhost:5173</code>)</li>
+                    <li><strong>Go back to your browser</strong> with the application running (<strong><code>http://localhost:5173</code></strong>)</li>
                     <li><strong>The page should automatically reload</strong> (hot reload feature)</li>
                     
                     <div class="note">
@@ -1094,7 +1133,7 @@
                 </div>
                 <img src="assets/image11.jpg" alt="Image 11" width="40%" height="40%" class="lab-image">
                 <div class="note">
-                    <strong>💡 Tip:</strong> If the page doesn't auto-reload, manually refresh your browser (<code>F5</code> or <code>Ctrl+R</code>)
+                    <strong>💡 Tip:</strong> If the page doesn't auto-reload, manually refresh your browser (<strong><code>F5</code></strong> or <strong><code>Ctrl+R</code></strong>)
                 </div>
 
                 <div class="warning">
@@ -1113,16 +1152,16 @@
 
                 <h4>8.1 Open the File</h4>
                 <ol>
-                    <li><strong>In Visual Studio Code, open the file <code>src/App.tsx</code></strong>
+                    <li><strong>In Visual Studio Code, open the file </strong><strong><code>src/App.tsx</code></strong>
                         <ul>
-                            <li>If it's not already open, click on <code>src</code> folder in the left sidebar</li>
-                            <li>Click on <code>App.tsx</code> to open it</li>
+                            <li>If it's not already open, click on <strong><code>src</code></strong> folder in the left sidebar</li>
+                            <li>Click on <strong><code>App.tsx</code></strong> to open it</li>
                         </ul>
                     </li>
                     <li><strong>Find the TODO comment:</strong>
                         <ul>
-                            <li>Press <code>Ctrl+F</code> (Windows/Linux) or <code>Cmd+F</code> (Mac) to open search</li>
-                            <li>Search for: <div class="code-block"><code>TODO: STEP 2 - USER STATE WIDGET</code><button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div></li>
+                            <li>Press <strong><code>Ctrl+F</code></strong> (Windows/Linux) or <strong><code>Cmd+F</code></strong> (Mac) to open search</li>
+                            <li>Search for: <div class="code-block"><strong><code>TODO: STEP 2 - USER STATE WIDGET</code></strong><button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div></li>
                         </ul>
                     </li>
                 </ol>
@@ -1130,18 +1169,18 @@
                 <h4>8.2 Implement User State Widget</h4>
                 <ol>
                     <li><strong>Replace the TODO comment with the User State widget code:</strong>
-                        <div class="code-block"><pre><code>{/* TODO: STEP 2 - USER STATE WIDGET */}
+                        <div class="code-block"><pre><strong><code>{/* TODO: STEP 2 - USER STATE WIDGET */}
 &lt;UserState
   onStateChange={(status: any) =&gt; {
     console.log('Agent state changed to:', status?.name);
   }}
 /&gt;
-</code></pre>
+</code></strong></pre>
 <button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
                     </li>
                     <li><strong>Save the file:</strong>
                         <ul>
-                            <li>Press <code>Ctrl+S</code> (Windows/Linux) or <code>Cmd+S</code> (Mac)</li>
+                            <li>Press <strong><code>Ctrl+V</code></strong> (Windows/Linux) or <strong><code>Cmd+V</code></strong> (Mac)</li>
                             <li>Or click <strong>File → Save</strong></li>
                         </ul>
                     </li>
@@ -1149,7 +1188,7 @@
 
                 <h4>8.3 Verify the Implementation</h4>
                 <ol>
-                    <li><strong>Go back to your browser</strong> with the application running (<code>http://localhost:5173</code>)</li>
+                    <li><strong>Go back to your browser</strong> with the application running (<strong><code>http://localhost:5173</code></strong>)</li>
                     <li><strong>The page should automatically reload</strong> (hot reload feature)</li>
                     
                     <div class="note">
@@ -1195,16 +1234,16 @@
 
                 <h4>9.1 Open the File</h4>
                 <ol>
-                    <li><strong>In Visual Studio Code, open the file <code>src/App.tsx</code></strong>
+                    <li><strong>In Visual Studio Code, open the file </strong><strong><code>src/App.tsx</code></strong>
                         <ul>
-                            <li>If it's not already open, click on <code>src</code> folder in the left sidebar</li>
-                            <li>Click on <code>App.tsx</code> to open it</li>
+                            <li>If it's not already open, click on <strong><code>src</code></strong> folder in the left sidebar</li>
+                            <li>Click on <strong><code>App.tsx</code></strong> to open it</li>
                         </ul>
                     </li>
                     <li><strong>Find the TODO comment:</strong>
                         <ul>
-                            <li>Press <code>Ctrl+F</code> (Windows/Linux) or <code>Cmd+F</code> (Mac) to open search</li>
-                            <li>Search for: <div class="code-block"><code>TODO: STEP 3 - TASK LIST WIDGET</code><button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div></li>
+                            <li>Press <strong><code>Ctrl+F</code></strong> (Windows/Linux) or <strong><code>Cmd+F</code></strong> (Mac) to open search</li>
+                            <li>Search for: <div class="code-block"><strong><code>TODO: STEP 3 - TASK LIST WIDGET</code></strong><button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div></li>
                         </ul>
                     </li>
                 </ol>
@@ -1212,7 +1251,7 @@
                 <h4>9.2 Implement Task List Widget</h4>
                 <ol>
                     <li><strong>Replace the TODO comment with the Task List widget code:</strong>
-                        <div class="code-block"><pre><code>{/* TODO: STEP 3 - TASK LIST WIDGET */}
+                        <div class="code-block"><pre><strong><code>{/* TODO: STEP 3 - TASK LIST WIDGET */}
 &lt;TaskList
   onTaskAccepted={(task: any) =&gt; {
     console.log('Task accepted:', task);
@@ -1225,12 +1264,12 @@
     console.log('Task selected:', task?.data?.mediaType);
   }}
 /&gt;
-</code></pre>
+</code></strong></pre>
 <button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
                     </li>
                     <li><strong>Save the file:</strong>
                         <ul>
-                            <li>Press <code>Ctrl+S</code> (Windows/Linux) or <code>Cmd+S</code> (Mac)</li>
+                            <li>Press <strong><code>Ctrl+V</code></strong> (Windows/Linux) or <strong><code>Cmd+V</code></strong> (Mac)</li>
                             <li>Or click <strong>File → Save</strong></li>
                         </ul>
                     </li>
@@ -1238,7 +1277,7 @@
 
                 <h4>9.3 Verify the Implementation</h4>
                 <ol>
-                    <li><strong>Go back to your browser</strong> with the application running (<code>http://localhost:5173</code>)</li>
+                    <li><strong>Go back to your browser</strong> with the application running (<strong><code>http://localhost:5173</code></strong>)</li>
                     <li><strong>The page should automatically reload</strong> (hot reload feature)</li>
                     
                     <div class="note">
@@ -1276,7 +1315,7 @@
                     - Make sure you saved the file after making changes<br>
                     - Ensure you're logged in with your station credentials first<br>
                     - Check that the application is still running in your terminal<br>
-                    - Verify that <code>setSelectedTask</code> is defined in your component state
+                    - Verify that <strong><code>setSelectedTask</code></strong> is defined in your component state
                 </div>
             </div>
 
@@ -1287,16 +1326,16 @@
 
                 <h4>10.1 Open the File</h4>
                 <ol>
-                    <li><strong>In Visual Studio Code, open the file <code>src/App.tsx</code></strong>
+                    <li><strong>In Visual Studio Code, open the file </strong><strong><code>src/App.tsx</code></strong>
                         <ul>
-                            <li>If it's not already open, click on <code>src</code> folder in the left sidebar</li>
-                            <li>Click on <code>App.tsx</code> to open it</li>
+                            <li>If it's not already open, click on <strong><code>src</code></strong> folder in the left sidebar</li>
+                            <li>Click on <strong><code>App.tsx</code></strong> to open it</li>
                         </ul>
                     </li>
                     <li><strong>Find the TODO comment:</strong>
                         <ul>
-                            <li>Press <code>Ctrl+F</code> (Windows/Linux) or <code>Cmd+F</code> (Mac) to open search</li>
-                            <li>Search for: <div class="code-block"><code>TODO: STEP 4 - FLOATING CALL CONTROL WIDGET</code><button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div></li>
+                            <li>Press <strong><code>Ctrl+F</code></strong> (Windows/Linux) or <strong><code>Cmd+F</code></strong> (Mac) to open search</li>
+                            <li>Search for: <div class="code-block"><strong><code>TODO: STEP 4 - FLOATING CALL CONTROL WIDGET</code></strong><button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div></li>
                         </ul>
                     </li>
                 </ol>
@@ -1304,7 +1343,7 @@
                 <h4>10.2 Implement Call Control Widget</h4>
                 <ol>
                     <li><strong>Replace the TODO comment with the Call Control widget code:</strong>
-                        <div class="code-block"><pre><code>{/* TODO: STEP 4 - FLOATING CALL CONTROL WIDGET */}
+                        <div class="code-block"><pre><strong><code>{/* TODO: STEP 4 - FLOATING CALL CONTROL WIDGET */}
 {isLoggedIn && selectedTask && (
   &lt;div className="floating-call-control"&gt;
     &lt;div className="call-control-header"&gt;
@@ -1332,11 +1371,11 @@
       /&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-)}</code></pre><button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
+)}</code></strong></pre><button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
                     </li>
                     <li><strong>Save the file:</strong>
                         <ul>
-                            <li>Press <code>Ctrl+S</code> (Windows/Linux) or <code>Cmd+S</code> (Mac)</li>
+                            <li>Press <strong><code>Ctrl+V</code></strong> (Windows/Linux) or <strong><code>Cmd+V</code></strong> (Mac)</li>
                             <li>Or click <strong>File → Save</strong></li>
                         </ul>
                     </li>
@@ -1344,7 +1383,7 @@
 
                 <h4>10.3 Verify the Implementation</h4>
                 <ol>
-                    <li><strong>Go back to your browser</strong> with the application running (<code>http://localhost:5173</code>)</li>
+                    <li><strong>Go back to your browser</strong> with the application running (<strong><code>http://localhost:5173</code></strong>)</li>
                     <li><strong>The page should automatically reload</strong> (hot reload feature)</li>
                     
                     <div class="note">
@@ -1353,8 +1392,8 @@
 
                     <li><strong>Important:</strong> The Call Control widget will only appear when:
                         <ul>
-                            <li>You are logged in (<code>isLoggedIn</code> is true)</li>
-                            <li>You have an active call selected (<code>selectedTask</code> is not null)</li>
+                            <li>You are logged in (<strong><code>isLoggedIn</code></strong> is true)</li>
+                            <li>You have an active call selected (<strong><code>selectedTask</code></strong> is not null)</li>
                         </ul>
                     </li>
                     <li><strong>When you have an active call (in later steps):</strong>
@@ -1381,8 +1420,8 @@
                     - Check the browser console (F12 → Console tab) for error messages<br>
                     - Verify you copied the code exactly as shown<br>
                     - Make sure you saved the file after making changes<br>
-                    - Ensure <code>isLoggedIn</code> and <code>selectedTask</code> state variables are properly defined<br>
-                    - Verify that <code>setSelectedTask</code> is defined in your component state<br>
+                    - Ensure <strong><code>isLoggedIn</code></strong> and <strong><code>selectedTask</code></strong> state variables are properly defined<br>
+                    - Verify that <strong><code>setSelectedTask</code></strong> is defined in your component state<br>
                     - Check that the application is still running in your terminal<br>
                     - <strong>Note:</strong> The widget won't appear until you have an active call, which we'll test in later steps
                 </div>
@@ -1395,7 +1434,7 @@
 
                 
 
-                <h4>11.1 Open Webex App (Supervisor)</h4>
+                <h4>11.1 Open Webex App (user2)</h4>
                 <ol>
                     <li><strong>Login with USER2 credentials:</strong>
                         <ul>
@@ -1445,7 +1484,7 @@
 
                 <h4>12.2 Agent Receives the Call</h4>
                 <ol>
-                    <li><strong>Switch to your custom application</strong> (<code>http://localhost:5173</code>)</li>
+                    <li><strong>Switch to your custom application</strong> (<strong><code>http://localhost:5173</code></strong>)</li>
                     <li><strong>Watch for incoming call notification:</strong>
                         <ul>
                             <li>You should see a call notification appear</li>
@@ -1480,8 +1519,8 @@
                         <ul>
                             <li>Speak into your computer microphone</li>
                             <li>Listen through your computer speakers/headphones</li>
-                            <li>The supervisor (in Webex App) should hear you</li>
-                            <li>You should hear the supervisor</li>
+                            <li>The user2 (in Webex App) should hear you</li>
+                            <li>You should hear the user2</li>
                         </ul>
                     </li>
                 </ol>
@@ -1547,8 +1586,8 @@
                 <ol>
                     <li><strong>Stop the application:</strong>
                         <ul>
-                            <li>Go to the terminal where <code>npm start</code> is running</li>
-                            <li>Press <code>Ctrl+C</code> to stop the server</li>
+                            <li>Go to the terminal where <strong><code>npm start</code></strong> is running</li>
+                            <li>Press <strong><code>Ctrl+C</code></strong> to stop the server</li>
                         </ul>
                     </li>
                     <li><strong>Close applications:</strong>
@@ -1578,7 +1617,7 @@ rm -rf cti-wxcc-widgets<button class="code-copy-btn" onclick="copyCodeBlock(this
         <!-- NAVIGATION BAR - Fixed at bottom -->
         <div id="navigation">
             <button class="nav-button" id="prevBtn">← Previous</button>
-            <span class="page-info">Page <span id="currentPageNum">1</span> of <span id="totalPages">17</span></span>
+            <span class="page-info">Page <span id="currentPageNum">1</span> of <span id="totalPages">16</span></span>
             <button class="nav-button" id="nextBtn">Next →</button>
         </div>
         </div> <!-- End main-content-wrapper -->
@@ -1648,7 +1687,7 @@ rm -rf cti-wxcc-widgets<button class="code-copy-btn" onclick="copyCodeBlock(this
         }
 
         let currentPage = 1;
-        const totalPages = 17;
+        const totalPages = 16;
         let usersData = {};
         let currentUsername = '';
 
@@ -1785,15 +1824,15 @@ rm -rf cti-wxcc-widgets<button class="code-copy-btn" onclick="copyCodeBlock(this
                 if (userData) {
                     document.getElementById('agentEmail').textContent = userData.agentEmail;
                     document.getElementById('agentPassword').textContent = userData.agentPassword;
-                    document.getElementById('supervisorEmail').textContent = userData.supervisorEmail;
-                    document.getElementById('supervisorPassword').textContent = userData.supervisorPassword;
+                    document.getElementById('userEmail').textContent = userData.userEmail;
+                    document.getElementById('userPassword').textContent = userData.userPassword;
                     document.getElementById('phoneNumber').textContent = userData.phoneNumber;
                 } else {
                     // User not found
                     document.getElementById('agentEmail').textContent = 'User not found';
                     document.getElementById('agentPassword').textContent = 'Please use user1-user16';
-                    document.getElementById('supervisorEmail').textContent = 'User not found';
-                    document.getElementById('supervisorPassword').textContent = 'Please use user1-user16';
+                    document.getElementById('userEmail').textContent = 'User not found';
+                    document.getElementById('userPassword').textContent = 'Please use user1-user16';
                     document.getElementById('phoneNumber').textContent = 'N/A';
                 }
                 
