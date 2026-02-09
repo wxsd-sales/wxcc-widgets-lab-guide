@@ -359,8 +359,17 @@
         }
 
         .copy-credential-btn:before {
-            content: '📋';
-            font-size: 1rem;
+            content: '';
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='13' height='13' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'%3E%3C/path%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-right: 4px;
+            vertical-align: middle;
+            pointer-events: none;
         }
 
         .copy-credential-btn:hover {
@@ -379,7 +388,14 @@
 
         .copy-credential-btn.copied:before {
             content: '✓';
+            display: inline-block;
+            width: auto;
+            height: auto;
+            background-image: none;
+            margin-right: 4px;
             font-size: 1.1rem;
+            vertical-align: middle;
+            pointer-events: none;
         }
 
         /* Code Block Styles */
@@ -465,8 +481,17 @@
         }
 
         .code-copy-btn:before {
-            content: '📋';
-            font-size: 1rem;
+            content: '';
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='13' height='13' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'%3E%3C/path%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-right: 4px;
+            vertical-align: middle;
+            pointer-events: none;
         }
 
         .code-copy-btn:hover {
@@ -485,7 +510,14 @@
 
         .code-copy-btn.copied:before {
             content: '✓';
+            display: inline-block;
+            width: auto;
+            height: auto;
+            background-image: none;
+            margin-right: 4px;
             font-size: 1.1rem;
+            vertical-align: middle;
+            pointer-events: none;
         }
 
         /* Alert Box Styles */
@@ -831,17 +863,17 @@
                 <p>Node.js is required to run the application. Let's verify it's installed on your machine.</p>
 
                 <h4>1. Open your terminal/command prompt:</h4>
-                <ul>
-                    <li><strong>Windows:</strong> Press <strong><code>Win + R</code></strong>, type <strong><code>cmd</code></strong>, and press Enter</li>
-                    <li><strong>Mac:</strong> Press <strong><code>Cmd + Space</code></strong>, type <strong><code>terminal</code></strong>, and press Enter</li>
-                    <li><strong>Linux:</strong> Press <strong><code>Ctrl + Alt + T</code></strong></li>
-                </ul>
+               Select the terminal icon from the task bar and open it.
+                    <div><img src="assets/terminal_select.png" alt="Terminal Select" width="80%" height="80%" class="lab-image"></div>
+                
 
                 <h4>2. Check Node.js version:</h4>
+                In the terminal, run the following command:
                 <div class="code-block">node --version<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
                 <p><strong>Expected output:</strong> You should see something like <strong><code>v22.x.x</code></strong></p>
 
                 <h4>3. Check npm version:</h4>
+                In the terminal, run the following command:
                 <div class="code-block">npm --version<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
                 <p><strong>Expected output:</strong> You should see something like <strong><code>9.x.x</code></strong> or <strong><code>10.x.x</code></strong></p>
 
@@ -862,19 +894,22 @@
                 <p>Now we'll download the lab code from GitHub.</p>
 
                 <h4>1. Navigate to your desired directory:</h4>
-                <p>Choose where you want to download the lab files. For example:</p>
+                <p>Choose where you want to download the lab files. For example, in the terminal, run the following command:</p>
                 <div class="code-block">cd ~/Desktop<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
 
                 <h4>2. Clone the repository:</h4>
+                In the terminal, run the following command:
                 <div class="code-block">git clone https://github.com/wxsd-sales/cti-wxcc-widgets.git<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
                 <div class="info">
                     <strong>What's happening?</strong> This command downloads all the lab files from GitHub to your computer.
                 </div>
 
                 <h4>3. Navigate into the project folder:</h4>
+                In the terminal, run the following command:
                 <div class="code-block">cd cti-wxcc-widgets<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
 
                 <h4>4. Verify the files are there:</h4>
+                In the terminal, run the following command:
                 <div class="code-block">ls<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
                 <p><strong>Expected output:</strong> You should see files and folders including <strong><code>package.json</code></strong>, <strong><code>src</code></strong>, <strong><code>public</code></strong>, etc.</p>
                 <img src="assets/image1.png" alt="Image 1" width="80%" height="80%" class="lab-image">
@@ -886,6 +921,7 @@
                 <p>The application needs various software packages to run. Let's install them.</p>
 
                 <h4>1. Run the install command:</h4>
+                In the terminal, run the following command:
                 <div class="code-block">npm install<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
                 <div class="info">
                     <strong>What's happening?</strong> This command reads the <strong><code>package.json</code></strong> file and installs all required packages.
@@ -918,6 +954,7 @@
                 <p>Now let's run the application for the first time!</p>
 
                 <h4>1. Start the development server:</h4>
+                In the terminal, run the following command:
                 <div class="code-block">npm run dev<button class="code-copy-btn" onclick="copyCodeBlock(this)">Copy</button></div>
                 <div class="info">
                     <strong>What's happening?</strong> This command starts a local web server to run your application.
@@ -934,7 +971,7 @@
 
                 <h4>4. Your browser should automatically open:</h4>
                 <ul>
-                    <li>If it doesn't, manually open your browser and go to: <strong><code>http://localhost:5173</code></strong></li>
+                    <li>If it doesn't, manually open your browser and go to: <a href="http://localhost:5173" target="_blank">http://localhost:5173</a></li>
                 </ul>
 
                 <h4>5. You should see:</h4>
@@ -958,7 +995,7 @@
                 <h4>5.1 Open Webex Developer Portal</h4>
                 <ol>
                     <li><strong>Open a new browser tab</strong></li>
-                    <li><strong>Navigate to:</strong> <strong><code>https://developer.webex.com</code></strong></li>
+                    <li><strong>Navigate to:</strong> <a href="https://developer.webex.com" target="_blank">https://developer.webex.com</a></li>
                     <li><strong>Click "Log In"</strong> in the top-right corner</li>
                 </ol>
 
@@ -977,11 +1014,7 @@
                 <ol>
                     <li><strong>Once logged in, you'll be on the developer dashboard</strong></li>
                     <li><strong>Look for your avatar/profile icon</strong> in the top-right corner</li>
-                    <li><strong>Click on it and find "Copy" next to your access token</strong> OR:
-                        <ul>
-                            <li>Scroll down the page to find "Your Personal Access Token"</li>
-                            <li>Look for a text field with a long string of characters</li>
-                        </ul>
+                    <li><strong>Click on it and find "Copy" next to your "Bearer" access token</strong>
                     </li>
                     <li><strong>Click "Copy"</strong> to copy your access token
                         <ul>
@@ -1009,14 +1042,14 @@
 
                 <h4>6.1 Paste Your Access Token</h4>
                 <ol>
-                    <li><strong>Go back to your application tab</strong> (<strong><code>http://localhost:5173</code></strong>)</li>
+                    <li><strong>Go back to your application tab</strong> (<a href="http://localhost:5173" target="_blank">http://localhost:5173</a>)</li>
                     <li><strong>You should see a login widget with an input field labeled "Access Token"</strong></li>
                     <li><strong>Paste your access token:</strong>
                         <ul>
 
                             <li>Click in the access token input field</li>
-                            <li>Press <strong><code>Ctrl+V</code></strong> (Windows/Linux) or <strong><code>Cmd+V</code></strong> (Mac)</li>
-                            <li>You should see the long token string appear</li>
+                            <li>Press <strong><code>Ctrl+S</code></strong> (Windows/Linux) or right click and select "Paste"</li>
+                            <li>You should see the long token string appear as dots</li>
                         </ul>
                     </li>
                     <li><strong>Click the "Connect" button</strong></li>
@@ -1044,16 +1077,13 @@
                 <h4>7.1 Open Visual Studio Code</h4>
                 <ol>
                     <li><strong>Open Visual Studio Code:</strong>
-                        <ul>
-                            <li><strong>Mac:</strong> Press <strong><code>Cmd + Space</code></strong>, type "Visual Studio Code" or "Code", then press Enter</li>
-                            <li><strong>Windows:</strong> Press <strong><code>Win</code></strong> key, type "Visual Studio Code", then press Enter</li>
-                            <li><strong>Linux:</strong> Open from your applications menu or type <strong><code>code</code></strong> in terminal</li>
-                        </ul>
+                        Select the Visual Studio Code icon from the task bar and open it.
+                        <div><img src="assets/vs_select.png" alt="VS Select" width="80%" height="80%" class="lab-image"></div>
                     </li>
                     <li><strong>Open the project folder:</strong>
                         <ul>
                             <li>In VS Code: <strong>File → Open Folder</strong></li>
-                            <li>Navigate to and select the <strong><code>cti-wxcc-widgets</code></strong> folder (the one you cloned in Step 2)</li>
+                            <li>Navigate to Desktop folder (or the folder you chose in Section 4) and select the <strong><code>cti-wxcc-widgets</code></strong> folder (the one you cloned in Section 4)</li>
                             <li>Click <strong>"Select Folder"</strong></li>
                         </ul>
                     </li>
@@ -1080,6 +1110,7 @@
                         </ul>
                     </li>
                     <li><strong>Replace the TODO comment with the Station Login widget code:</strong>
+                        Copy the following code and paste it the App.tsx file where it says "TODO: STEP 1 - STATION LOGIN WIDGET"
                         <div class="code-block"><pre><strong><code>{/* TODO: STEP 1 - STATION LOGIN WIDGET */}
 &lt;StationLogin
   profileMode={false}
@@ -1095,7 +1126,7 @@
                     </li>
                     <li><strong>Save the file:</strong>
                         <ul>
-                            <li>Press <strong><code>Ctrl+V</code></strong> (Windows/Linux) or <strong><code>Cmd+V</code></strong> (Mac)</li>
+                            <li>Press <strong><code>Ctrl+S</code></strong> (Windows/Linux)</li>
                             <li>Or click <strong>File → Save</strong></li>
                         </ul>
                     </li>
@@ -1103,7 +1134,7 @@
 
                 <h4>7.3 Verify the Implementation</h4>
                 <ol>
-                    <li><strong>Go back to your browser</strong> with the application running (<strong><code>http://localhost:5173</code></strong>)</li>
+                    <li><strong>Go back to your browser</strong> with the application running (<a href="http://localhost:5173" target="_blank">http://localhost:5173</a>)</li>
                     <li><strong>The page should automatically reload</strong> (hot reload feature)</li>
                     
                     <div class="note">
@@ -1169,6 +1200,7 @@
                 <h4>8.2 Implement User State Widget</h4>
                 <ol>
                     <li><strong>Replace the TODO comment with the User State widget code:</strong>
+                        Copy the following code and paste it the App.tsx file where it says "TODO: STEP 2 - USER STATE WIDGET"
                         <div class="code-block"><pre><strong><code>{/* TODO: STEP 2 - USER STATE WIDGET */}
 &lt;UserState
   onStateChange={(status: any) =&gt; {
@@ -1180,7 +1212,7 @@
                     </li>
                     <li><strong>Save the file:</strong>
                         <ul>
-                            <li>Press <strong><code>Ctrl+V</code></strong> (Windows/Linux) or <strong><code>Cmd+V</code></strong> (Mac)</li>
+                            <li>Press <strong><code>Ctrl+S</code></strong> (Windows/Linux)</li>
                             <li>Or click <strong>File → Save</strong></li>
                         </ul>
                     </li>
@@ -1188,7 +1220,7 @@
 
                 <h4>8.3 Verify the Implementation</h4>
                 <ol>
-                    <li><strong>Go back to your browser</strong> with the application running (<strong><code>http://localhost:5173</code></strong>)</li>
+                    <li><strong>Go back to your browser</strong> with the application running (<a href="http://localhost:5173" target="_blank">http://localhost:5173</a>)</li>
                     <li><strong>The page should automatically reload</strong> (hot reload feature)</li>
                     
                     <div class="note">
@@ -1251,6 +1283,7 @@
                 <h4>9.2 Implement Task List Widget</h4>
                 <ol>
                     <li><strong>Replace the TODO comment with the Task List widget code:</strong>
+                        Copy the following code and paste it the App.tsx file where it says "TODO: STEP 3 - TASK LIST WIDGET"
                         <div class="code-block"><pre><strong><code>{/* TODO: STEP 3 - TASK LIST WIDGET */}
 &lt;TaskList
   onTaskAccepted={(task: any) =&gt; {
@@ -1269,7 +1302,7 @@
                     </li>
                     <li><strong>Save the file:</strong>
                         <ul>
-                            <li>Press <strong><code>Ctrl+V</code></strong> (Windows/Linux) or <strong><code>Cmd+V</code></strong> (Mac)</li>
+                            <li>Press <strong><code>Ctrl+S</code></strong> (Windows/Linux) </li>
                             <li>Or click <strong>File → Save</strong></li>
                         </ul>
                     </li>
@@ -1277,7 +1310,7 @@
 
                 <h4>9.3 Verify the Implementation</h4>
                 <ol>
-                    <li><strong>Go back to your browser</strong> with the application running (<strong><code>http://localhost:5173</code></strong>)</li>
+                    <li><strong>Go back to your browser</strong> with the application running (<a href="http://localhost:5173" target="_blank">http://localhost:5173</a>)</li>
                     <li><strong>The page should automatically reload</strong> (hot reload feature)</li>
                     
                     <div class="note">
@@ -1289,8 +1322,13 @@
                             <li>A <strong>Tasks</strong> section appears in the CTI panel</li>
                             <li>The task list area is visible and ready to display incoming interactions</li>
                         </ul>
+                        <img src="assets/image12.jpg" alt="Image 12" width="40%" height="40%" class="lab-image">
                     </li>
-                    <li><strong>We are not testing this widget now</strong></li>
+                    <li>
+                        <div style="background: #fff1f0; border: 2px solid #ff4d4f; border-left: 4px solid #ff4d4f; padding: 16px 20px; border-radius: 4px; margin: 12px 0; color: #cf1322; font-weight: 700; font-size: 1.15rem; line-height: 1.6;">
+                            <strong>⚠️ Note: The widget won't appear until you have an active call, which we'll test in later steps</strong>
+                        </div>
+                    </li>
                     <li><strong>But in the later steps, when you receive a call:</strong>
                         <ul>
                             <li>The incoming call will appear in the Tasks section</li>
@@ -1343,6 +1381,7 @@
                 <h4>10.2 Implement Call Control Widget</h4>
                 <ol>
                     <li><strong>Replace the TODO comment with the Call Control widget code:</strong>
+                        Copy the following code and paste it the App.tsx file where it says "TODO: STEP 4 - FLOATING CALL CONTROL WIDGET"
                         <div class="code-block"><pre><strong><code>{/* TODO: STEP 4 - FLOATING CALL CONTROL WIDGET */}
 {isLoggedIn && selectedTask && (
   &lt;div className="floating-call-control"&gt;
@@ -1375,7 +1414,7 @@
                     </li>
                     <li><strong>Save the file:</strong>
                         <ul>
-                            <li>Press <strong><code>Ctrl+V</code></strong> (Windows/Linux) or <strong><code>Cmd+V</code></strong> (Mac)</li>
+                            <li>Press <strong><code>Ctrl+S</code></strong> (Windows/Linux)</li>
                             <li>Or click <strong>File → Save</strong></li>
                         </ul>
                     </li>
@@ -1383,18 +1422,17 @@
 
                 <h4>10.3 Verify the Implementation</h4>
                 <ol>
-                    <li><strong>Go back to your browser</strong> with the application running (<strong><code>http://localhost:5173</code></strong>)</li>
+                    <li><strong>Go back to your browser</strong> with the application running (<a href="http://localhost:5173" target="_blank">http://localhost:5173</a>)</li>
                     <li><strong>The page should automatically reload</strong> (hot reload feature)</li>
                     
                     <div class="note">
                         <strong>💡 Note:</strong> If you manually reload the page, you will need to add the access token again and log in with your station credentials.
                     </div>
 
-                    <li><strong>Important:</strong> The Call Control widget will only appear when:
-                        <ul>
-                            <li>You are logged in (<strong><code>isLoggedIn</code></strong> is true)</li>
-                            <li>You have an active call selected (<strong><code>selectedTask</code></strong> is not null)</li>
-                        </ul>
+                    <li>
+                        <div style="background: #fff1f0; border: 2px solid #ff4d4f; border-left: 4px solid #ff4d4f; padding: 16px 20px; border-radius: 4px; margin: 12px 0; color: #cf1322; font-weight: 700; font-size: 1.15rem; line-height: 1.6;">
+                            <strong>⚠️ Note: The widget won't appear until you have an active call, which we'll test in later steps</strong>
+                        </div>
                     </li>
                     <li><strong>When you have an active call (in later steps):</strong>
                         <ul>
@@ -1436,6 +1474,9 @@
 
                 <h4>11.1 Open Webex App (user2)</h4>
                 <ol>
+                    <li>Click on the More Apps icon in the taskbar</li>
+                    <img src="assets/moreapps_select.png" alt="More Apps Select" width="80%" height="80%" class="lab-image">
+                    <li>Search for Webex App and click on it</li>
                     <li><strong>Login with USER2 credentials:</strong>
                         <ul>
                             <li>Email: [Your user2 email from credentials section]</li>
@@ -1484,7 +1525,7 @@
 
                 <h4>12.2 Agent Receives the Call</h4>
                 <ol>
-                    <li><strong>Switch to your custom application</strong> (<strong><code>http://localhost:5173</code></strong>)</li>
+                    <li><strong>Switch to your custom application</strong> (<a href="http://localhost:5173" target="_blank">http://localhost:5173</a>)</li>
                     <li><strong>Watch for incoming call notification:</strong>
                         <ul>
                             <li>You should see a call notification appear</li>
@@ -1509,7 +1550,7 @@
                     <li><strong>Click the "Answer" button</strong> in your custom application</li>
                     <li><strong>Call should connect:</strong>
                         <ul>
-                            <li>Call status changes to "Connected" or "Active"</li>
+                            <li>Call status changes to "Engaged"</li>
                             <li>Call timer starts counting</li>
                             <li>Call control buttons become active (Hold, Mute, Transfer, etc.)</li>
                         </ul>
@@ -1552,13 +1593,7 @@
                     <li><span class="checkmark">✅</span> Tested call controls and agent features</li>
                 </ul>
 
-                <h3>Key Takeaways:</h3>
-                <ol>
-                    <li><strong>WXCC widgets</strong> can be embedded into any web application</li>
-                    <li><strong>Access tokens</strong> are used for authentication</li>
-                    <li><strong>Widgets work together</strong> to create a complete contact center experience</li>
-                    <li><strong>Custom interfaces</strong> can be built while leveraging Webex Contact Center backend</li>
-                </ol>
+                
 
             </div>
 
@@ -1624,6 +1659,39 @@ rm -rf cti-wxcc-widgets<button class="code-copy-btn" onclick="copyCodeBlock(this
     </div> <!-- End labGuideContainer -->
 
     <script>
+        // Helper function to copy text to clipboard with fallback
+        function copyToClipboard(text) {
+            // Try modern Clipboard API first
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                return navigator.clipboard.writeText(text);
+            }
+            
+            // Fallback to execCommand for older browsers or non-HTTPS contexts
+            return new Promise((resolve, reject) => {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.left = '-999999px';
+                textarea.style.top = '-999999px';
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+                
+                try {
+                    const successful = document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    if (successful) {
+                        resolve();
+                    } else {
+                        reject(new Error('Copy command failed'));
+                    }
+                } catch (err) {
+                    document.body.removeChild(textarea);
+                    reject(err);
+                }
+            });
+        }
+
         // Copy credential to clipboard
         function copyCredential(elementId, button) {
             const element = document.getElementById(elementId);
@@ -1633,7 +1701,7 @@ rm -rf cti-wxcc-widgets<button class="code-copy-btn" onclick="copyCodeBlock(this
                 return;
             }
 
-            navigator.clipboard.writeText(text).then(() => {
+            copyToClipboard(text).then(() => {
                 const originalText = button.textContent;
                 button.textContent = 'Copied!';
                 button.classList.add('copied');
@@ -1671,7 +1739,7 @@ rm -rf cti-wxcc-widgets<button class="code-copy-btn" onclick="copyCodeBlock(this
             textarea.innerHTML = codeText;
             codeText = textarea.value;
             
-            navigator.clipboard.writeText(codeText).then(() => {
+            copyToClipboard(codeText).then(() => {
                 const originalText = button.textContent;
                 button.textContent = 'Copied!';
                 button.classList.add('copied');
